@@ -1,0 +1,14 @@
+.getAllBoats, .addBoat, .addGangOfBoats, .findBoat{
+    border:1px solid black;
+    border-radius:15px;
+    margin:1em;
+    padding:1em;
+}
+
+.boatList{
+    list-style:none;
+    
+}
+.boat{
+    padding:.3em;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berras Boats</title>
+    <script src='script.js'></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+
+        <h1>Berras Båtar</h1>
+
+        <!-- Hämta alla båtar******************** -->
+        <div class='getAllBoats'>
+            <h3>Hämta alla båtar</h3>
+
+            <button class='getBoatsButton'>Hämta alla båtar</button>
+            <div>
+    
+                <ul class='boatList'>
+                </ul>
+            </div>
+
+        </div>
+
+
+        <!-- Lägg till ny båt*********************** -->
+        <div class="addBoat">
+            <h3>Lägg till en helt ny båt: Det blir en 'modellnamn' från 'årtal' som kostar 'pris' kronor</h3>
+            <button class="addBoatButton">Add new boat</button>
+
+        </div>
+
+
+        <!-- Lägg till flera nya båtar om det är tomt i databasen*********************** -->
+        <div class="addGangOfBoats">
+            <h3>Tomt i databasen? Lägg till ett helt gäng båtar. Bara att klicka.</h3>
+            <button class="addGangOfBoatsButton">Add gang of boats</button>
+
+        </div>
+        
+
+        <div class='findBoat'>
+            <h3>Leta efter en specifik båt</h3>
+            <input type='number' value='' placeholder='Id-number' id='inputIdNumber'>
+
+            <button class='findBoatButton'>Hämta en spec båt</button>
+        </div>
+
+
+    </main>
+    
+</body>
+</html>

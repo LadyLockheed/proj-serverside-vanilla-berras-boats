@@ -4,6 +4,10 @@ const port=1338;
 const {getAllBoats}=require('./database.js')
 const {testThisShit}=require('./database.js')
 
+// MIDDLEWARE
+
+app.use(express.static(__dirname +'/../public'))
+
 
 let boatList=[
     {
