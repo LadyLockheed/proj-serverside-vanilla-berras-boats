@@ -21,14 +21,14 @@ let boatList=[
     }
 ]
 
-//ROUTES
-// app.get('/api/boats', (req,res)=>{
-//     console.log('GET /api/boats')
-//     //skickar in en funktion som parameter, i database.js heter parametern callback
-//    getAllBoats(dataOrError=>{
-//        res.send(dataOrError)
-//    })
-// })
+// ROUTES
+app.get('/api/boats', (req,res)=>{
+    console.log('GET /api/boats')
+    //skickar in en funktion som parameter, i database.js heter parametern callback
+    getAllBoats(dataOrError=>{
+       res.send(dataOrError)
+   });
+})
 
 app.get('/api/test',(req,res)=>{
     console.log('get test')
@@ -37,8 +37,8 @@ app.get('/api/test',(req,res)=>{
         res.send(data)
 })
 
-app.get('/api/boats', (req,res)=>{
-    console.log('GET boats')
+app.get('/api/testBoats', (req,res)=>{
+    console.log('GET testBoats')
     res.send(boatList)
 })
 

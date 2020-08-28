@@ -42,3 +42,5 @@ let boatList=[
     },
 
 ]
+
+db.boats.insertOne({modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no',motor:'yes'})
