@@ -44,3 +44,20 @@ let boatList=[
 ]
 
 db.boats.insertOne({modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no',motor:'yes'})
+
+
+//Lägg till en ny båt
+db.boats.insertOne({modelName:'Aquabell 33', constructionYear:1980, price:390000, sailingBoat:'no',motor:'yes'})
+
+
+//alla båtar som redan ligger i databasen
+db.boats.insertMany([{modelName:'Regalskeppet Vasa',constructionYear:1627, price:1000000,sailingBoat:'yes',motor:'no'},{modelName:'Ostindiefararen Götheborg',constructionYear:2003,
+price:250000000,sailingBoat:'yes',motor:'yes'},{modelName:'Black Pearl',constructionYear:2003,price:12.50,sailingBoat:'yes',motor:'no'},{modelName:'Slice of Life',
+constructionYear:2001,price:30500,sailingBoat:'no',
+motor:'yes'},{modelName:'Orca',constructionYear:1975,price:55700,sailingBoat:'no',motor:'yes'}])
+
+//ett gäng nya båtar
+db.boats.insertMany([{modelName:'Kanadensare',constructionYear:1300, price:100,sailingBoat:'no',motor:'no'},{modelName:'Kajak',constructionYear:1998,
+price:5000,sailingBoat:'no',motor:'yes'},{modelName:'Great White 300A alu rib jokey',constructionYear:2020,price:34000,sailingBoat:'no',motor:'yes'},{modelName:'Nimbus 26',
+constructionYear:2009,price:285000,sailingBoat:'no',
+motor:'yes'},{modelName:'Winga',constructionYear:1987,price:375000,sailingBoat:'yes',motor:'yes'}])

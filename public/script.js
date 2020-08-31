@@ -25,7 +25,7 @@ window.addEventListener('load',()=>{
             li.innerHTML= boat.modelName
             boatList.appendChild(li)
 
-            li.innerHTML= `Båtmodell: ${boat.modelName} <br> Pris: ${boat.price}`
+            li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price}`
         })
 
 

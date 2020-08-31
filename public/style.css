@@ -1,13 +1,41 @@
 .getAllBoats, .addBoat, .addGangOfBoats, .findBoat{
     border:1px solid black;
-    border-radius:15px;
+    border-radius:5px;
     margin:1em;
     padding:1em;
 }
 
+h1{
+    color: #DAE2E9;
+    margin:.5em;
+    
+    font-family: 'Noto Sans KR', sans-serif;
+   
+}
+h3{
+    color:#8ba1cc;
+    font-family:'Mulish', sans-serif
+}
+p{
+    font-family: 'Noto Sans KR', sans-serif;
+    color:white;
+    
+}
+body{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    background-color: #333C76;
+}
+
+
 .boatList{
     list-style:none;
+    padding-inline-start: 0;
     
+}
+.boatList>li{
+    color:white;
 }
 .boat{
     padding:.3em;

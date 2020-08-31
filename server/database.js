@@ -1,6 +1,5 @@
-const {MongoClient}=require('mongodb')
+const {MongoClient, ObjectID}=require('mongodb')
 const url='mongodb://localhost:27017';
-//TODO kolla så att databasen stämmer
 const databaseName='berrasBoats'
 const collectioName='boats'
 
@@ -8,8 +7,12 @@ function testThisShit(){
     return 'funktionen testthisshit verkar funka'
 }
 
+function getAllBoats(callback){
+    get({}, callback)
+}
 
-function getAllBoats(callback) {
+
+function get( filter, callback) {
 //För att kunna connecta med mongodb
     MongoClient.connect(
     url,
@@ -25,7 +28,7 @@ function getAllBoats(callback) {
         const col=client.db(databaseName).collection(collectioName);
         //dags att hämta alla båtar, måste göra om resultatet till en array
         //Query
-        col.find().toArray((error, docs)=>{
+        col.find(filter).toArray((error, docs)=>{
             if(error){
                 console.log('Query error: ', error.message);
                 callback('ERROR med query'); 

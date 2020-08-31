@@ -34,6 +34,10 @@ app.get('/api/boats', (req,res)=>{
    });
 })
 
+// app.get('/api/boat', (req, res)=>{
+  
+// })
+
 app.get('/api/test',(req,res)=>{
     console.log('get test')
 
