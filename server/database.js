@@ -3,13 +3,18 @@ const url='mongodb://localhost:27017';
 const databaseName='berrasBoats'
 const collectioName='boats'
 
-function testThisShit(){
-    return 'funktionen testthisshit verkar funka'
-}
 
 function getAllBoats(callback){
     get({}, callback)
 }
+
+
+function getBoat(id, callback){
+    // console.log('id är: '+req.body.id)
+    get({modelName:'Titanic'}, callback)
+    
+}
+
 
 
 function get( filter, callback) {
@@ -47,5 +52,6 @@ function get( filter, callback) {
 
 module.exports={
     getAllBoats,
-    testThisShit
+    getBoat,
+    
 }

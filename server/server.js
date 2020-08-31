@@ -1,29 +1,18 @@
 const express=require('express')
 const app=express();
 const port=1338;
-const {getAllBoats}=require('./database.js')
+const {getAllBoats, getBoat}=require('./database.js')
 const {testThisShit}=require('./database.js')
 
 // MIDDLEWARE
 
 app.use(express.static(__dirname +'/../public'))
 
+app.use( (req, res, next) => {
+	console.log(`${req.method} ${req.url}`);
+	next()
+})
 
-let boatList=[
-    {
-        modelName:'Regalskeppet Vasa', constructionYear:1627, 
-        price:1000000,
-        sailingBoat:'yes',
-        motor:'no'
-    },
-    {
-        modelName:'Titanic',
-        constructionYear:1911,
-        price:60000000,
-        sailingBoat:'no',
-        motor:'yes'
-    }
-]
 
 // ROUTES
 app.get('/api/boats', (req,res)=>{
@@ -34,21 +23,21 @@ app.get('/api/boats', (req,res)=>{
    });
 })
 
-// app.get('/api/boat', (req, res)=>{
-  
-// })
 
-app.get('/api/test',(req,res)=>{
-    console.log('get test')
-
-        let data=testThisShit();
-        res.send(data)
+app.get('/api/boat', (req, res)=>{
+    
+    let id=req.query.id
+    getBoat(id, dataOrError=>{
+        console.log('i app.get.boat: '+ dataOrError)
+       res.send(dataOrError) 
+    })
+    // let model=req.query.searchParam
+   
+    // res.send(model)
+    
+    
 })
 
-app.get('/api/testBoats', (req,res)=>{
-    console.log('GET testBoats')
-    res.send(boatList)
-})
 
 
 

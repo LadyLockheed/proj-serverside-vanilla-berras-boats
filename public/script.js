@@ -2,15 +2,14 @@ window.addEventListener('load',()=>{
     //GET all boats
     let buttonGetBoats=document.querySelector('.getBoatsButton')
     let boatList=document.querySelector('.boatList')
-    //POST ny båt
-    let buttonAddBoat=document.querySelector('.addBoatButton')
     //GET spec. båt
     let buttonFindBoat=document.querySelector('.findBoatButton')
+    let findBoatContainer=document.querySelector('.findBoatContainer')
+    //POST ny båt
+    let buttonAddBoat=document.querySelector('.addBoatButton')
+ 
     let inputId=document.querySelector('#inputIdNumber')
  
-
-    
-
 
     buttonGetBoats.addEventListener('click', async()=>{
        
@@ -21,14 +20,47 @@ window.addEventListener('load',()=>{
         boatList.innerHTML='';
         boatsObject.forEach(boat=>{
             let li=document.createElement('li')
+            
             li.className='boat'
-            li.innerHTML= boat.modelName
-            boatList.appendChild(li)
-
             li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price}`
+            let button=document.createElement('button')
+
+            //TODO Kan jag göra nåt med dessa knappar? Tex ta bort valt element?
+            button.innerHTML=boat.modelName
+            button.className=boat._id
+            boatList.appendChild(li)
+            boatList.appendChild(button)
+
+           
         })
 
 
+    })
+
+
+    buttonFindBoat.addEventListener('click', async()=>{
+        
+        //TODO ta in inputvalue från inputfält istället för hårdkodat Titanic
+        //let id=JSON.stringify(input.value)TEx.
+        let inputParam=JSON.stringify('Titanic')
+        
+        const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
+
+        const boat=await response.json();
+        console.log('Hämtade båt: ', boat)
+        
+        //! Varför blir det en lista med ett objekt, så jag måste in i listan.
+
+        findBoatContainer.innerHTML='';
+        let p=document.createElement('p')
+        p.className='findBoat'
+        p.innerHTML= `Modell: ${boat[0].modelName} <br> Pris: ${boat[0].price}<br> Byggdes år: ${boat[0].constructionYear} <br> `
+        findBoatContainer.appendChild(p)
+
+            
+        
+      
+ 
     })
 
     // buttonAddBoat.addEventListener('click', async()=>{
@@ -47,16 +79,7 @@ window.addEventListener('load',()=>{
 
     // })
 
-    // buttonFindBoat.addEventListener('click', async()=>{
 
-    //    let id=inputId.value;
-    //     // url=`/boat?id=${id}`
-    //    const response=await fetch (`/boat?id=${id}`,{method:'GET'})
-    //    const boat=await response.json();
-    //    console.log('Hämtade båt: ', boat)
-     
-
-    // })
 
 
 })
