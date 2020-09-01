@@ -26,9 +26,10 @@ app.get('/api/boats', (req,res)=>{
 
 app.get('/api/boat', (req, res)=>{
     
-    let id=req.query.id
+    let id=req.query.searchParam
+    console.log('i appgetboat, id är: ', id)
     getBoat(id, dataOrError=>{
-        console.log('i app.get.boat: '+ dataOrError)
+    console.log('i app.get.boat: '+ dataOrError)
        res.send(dataOrError) 
     })
     // let model=req.query.searchParam

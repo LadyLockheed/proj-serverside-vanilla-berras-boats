@@ -5,6 +5,7 @@ window.addEventListener('load',()=>{
     //GET spec. båt
     let buttonFindBoat=document.querySelector('.findBoatButton')
     let findBoatContainer=document.querySelector('.findBoatContainer')
+    let findBoatInput=document.querySelector('#inputFindBoat')
     //POST ny båt
     let buttonAddBoat=document.querySelector('.addBoatButton')
  
@@ -23,26 +24,25 @@ window.addEventListener('load',()=>{
             
             li.className='boat'
             li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price}`
-            let button=document.createElement('button')
+            // let button=document.createElement('button')
 
             //TODO Kan jag göra nåt med dessa knappar? Tex ta bort valt element?
-            button.innerHTML=boat.modelName
-            button.className=boat._id
+            // button.innerHTML=boat.modelName
+            // button.className=boat._id
             boatList.appendChild(li)
-            boatList.appendChild(button)
-
+            // boatList.appendChild(button)
            
         })
-
 
     })
 
 
     buttonFindBoat.addEventListener('click', async()=>{
-        
-        //TODO ta in inputvalue från inputfält istället för hårdkodat Titanic
-        //let id=JSON.stringify(input.value)TEx.
-        let inputParam=JSON.stringify('Titanic')
+
+        let inputParam=findBoatInput.value
+        console.log('Inputparam är: ', inputParam)
+       
+        // let inputParam='Titanic'
         
         const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
 

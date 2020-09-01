@@ -8,44 +8,39 @@ function getAllBoats(callback){
     get({}, callback)
 }
 
-
 function getBoat(id, callback){
-    // console.log('id är: '+req.body.id)
-    get({modelName:'Titanic'}, callback)
-    
+    // console.log('I getboat funktion, id är : ', `${id}`)
+    get({modelName:`${id}`}, callback)
+
 }
-
-
 
 function get( filter, callback) {
 //För att kunna connecta med mongodb
     MongoClient.connect(
     url,
     {useUnifiedTopology:true},
-    (error, client)=>{
+    async (error, client)=>{
         //om anslutning misslyckas, returnera fel
         if(error){
             callback('ERROR! Kunde inte connecta. Attans.')
             return;//exit the callback function
         }
-        
         //collectionobjektet ska man skicka queries till
         const col=client.db(databaseName).collection(collectioName);
         //dags att hämta alla båtar, måste göra om resultatet till en array
         //Query
-        col.find(filter).toArray((error, docs)=>{
-            if(error){
-                console.log('Query error: ', error.message);
-                callback('ERROR med query'); 
-                
-            } else{
-                //om allt går bra returneras detta
-                callback(docs);
-            }
-            client.close();
-        
-        })//toArray-async
+        try{
+            const cursor=await col.find(filter);
+            const array=await cursor.toArray();
+            callback(array);
 
+        } catch(error){
+            console.log('Query error: ', error.message);
+            callback('ERROR med query'); 
+        } finally{
+            client.close();
+        }
+  
     })
     
 }
