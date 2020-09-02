@@ -10,10 +10,15 @@ function getAllBoats(callback){
     get({}, callback)
 }
 
-function getBoat(id, callback){
-    // console.log('I getboat funktion, id är : ', `${id}`)
-    get({modelName:`${id}`}, callback)
+// function getBoat(id, callback){
+//     // console.log('I getboat funktion, id är : ', `${id}`)
+//     get({modelName:`${id}`}, callback)
 
+// }
+
+function getBoat(id, callback){
+    // get({ _id: new ObjectID(id) }, array => callback( array[0] ))
+    get({_id: new ObjectID(id)},callback)
 }
 
 function get( filter, callback) {
@@ -29,7 +34,7 @@ function get( filter, callback) {
             }
             const col=client.db(databaseName).collection(collectionName) //collectionobjektet ska man skicka queries till
             //dags att hämta alla båtar, måste göra om resultatet till en array
-            //Query
+    
             try{
                 const cursor=await col.find(filter);
                 const array=await cursor.toArray();

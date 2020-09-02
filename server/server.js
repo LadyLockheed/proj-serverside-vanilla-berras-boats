@@ -5,7 +5,7 @@ const port=1338;
 const {getAllBoats, getBoat, addBoat}=require('./database.js')
 
 
-// MIDDLEWARE
+// MIDDLEWARE--------
 
 app.use(express.static(__dirname +'/../public'))
 app.use(bodyParser.json())
@@ -18,7 +18,11 @@ app.use( (req, res, next) => {
 })
 
 
-// ROUTES
+// ROUTES--------
+
+app.get('/api/test', (req, res)=>{
+    res.send('Test funkar')
+})
 
 //hämta alla
 app.get('/api/boats', (req,res)=>{
@@ -39,19 +43,24 @@ app.get('/api/boat', (req, res)=>{
    
 })
 
+//sök
+app.get('/api/search', (req, res)=>{
+    // console.log('Queryn är: ', req.query.searchParam)
+    // res.send('search funkar!')
+    let id=req.query.searchParam
+    getBoat(id, dataOrError=>{
+       res.send(dataOrError) 
+    })
+})
+
 //lägg till en ny båt
 app.post('/api/addBoat', (req, res)=>{
-
 
     addBoat(req.body, dataOrError =>{
         res.send(dataOrError)
     })
    
 })
-
-
-
-
 
 
 //START WEBBSERVER

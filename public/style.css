@@ -1,4 +1,4 @@
-.getAllBoats, .addBoat, .addGangOfBoats, .findBoat{
+.getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer{
     border:1px solid black;
     border-radius:5px;
     margin:1em;

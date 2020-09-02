@@ -9,8 +9,9 @@ window.addEventListener('load',()=>{
     //POST ny båt
     let buttonAddBoat=document.querySelector('.addBoatButton')
     let newBoatMsg=document.querySelector('.newBoat')
- 
     let inputId=document.querySelector('#inputIdNumber')
+    //GET search name
+    let buttonSearch=document.querySelector('.searchButton')
  
 
     buttonGetBoats.addEventListener('click', async()=>{
@@ -39,35 +40,68 @@ window.addEventListener('load',()=>{
 
 
     buttonFindBoat.addEventListener('click', async()=>{
-
+        //TODO lägg in alternativ att man ska kunna söka på id också, kan då ha ett färdigt id som value='idnummer så står det färdigt i inputfältet.
+     
         let inputParam=findBoatInput.value
-       
-       
-        // let inputParam='Titanic'
+     
+        console.log(`/api/boat?searchParam=${inputParam}`)
         
-        const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
+        try{
+            const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
+            const boat=await response.json();
+            console.log('Hämtade båt: ', boat)
+
+            findBoatContainer.innerHTML='';
+            let p=document.createElement('p');
+            p.className='findBoat';
+            p.innerHTML=`Modell: ${boat.modelName} <br> Pris: ${boat.price}<br> Byggdes år: ${boat.constructionYear} <br> `
+            findBoatContainer.appendChild(p)
+        } catch(error){
+            console.log('Kunde inte hämta nånting')
+            findBoatContainer.innerHTML='';
+            let p=document.createElement('p');
+            p.className='findBoat';
+            p.innerHTML='Tyvärr finns inte båten du letade efter.'
+            findBoatContainer.appendChild(p)
+
+        }
+   
+        
+    })
+
+
+    buttonSearch.addEventListener('click', async()=>{
+ 
+        // let inputParam=findBoatInput.value
+        let inputParam='Orca'
+        console.log(`/api/search?searchParam=${inputParam}`)
+        
+        const response=await fetch (`/api/search?searchParam=${inputParam}`,{method:'GET'})
 
         const boat=await response.json();
         console.log('Hämtade båt: ', boat)
-        if(boat.length==1){
-            findBoatContainer.innerHTML='';
-            let p=document.createElement('p')
-            p.className='findBoat'
-            p.innerHTML= `Modell: ${boat[0].modelName} <br> Pris: ${boat[0].price}<br> Byggdes år: ${boat[0].constructionYear} <br> `
-            findBoatContainer.appendChild(p)
-        }
-        else{
-
-            let p=document.createElement('p')
-            p.innerHTML='Båten du letade efter finns inte'
-            findBoatContainer.appendChild(p)
-        }
+      
 
     })
 
+
+    // buttonSearch.addEventListener('click', async() =>{
+
+   
+
+    //     let inputParam="Orca"
+    //     console.log(`/api/search?searchParam=${inputParam}`)
+
+    //     const response=await fetch (`/api/search?searchParam=${inputParam}`,{method:'GET'})
+
+    //     const foundThis=await response.json();
+    //     console.log('Script: Hämtade båt: ', foundThis)
+
+
+    // })
+
     buttonAddBoat.addEventListener('click', async()=>{
-       
-        
+   
         //om egenskapen har samma namn som variabeln kan man förenkla och bara ha med en av dom.
         let inputData={modelName:'Ockelbo DC 21', constructionYear:1989, price:99000, sailingBoat:'no', motor:'yes'}
         //gör om datan till string
@@ -92,6 +126,8 @@ window.addEventListener('load',()=>{
         // console.log('Script: stringifyad data: ', stringdata)
 
     })
+
+   
 
 
 
