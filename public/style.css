@@ -1,18 +1,21 @@
 .getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer, .deleteContainer{
-    border:1px solid black;
+    /* border:1px solid rgb(83, 83, 83); */
     border-radius:5px;
+    box-shadow: 3px 3px 10px 3px #cacaca65;
     margin:1em;
     padding:1em;
+    background-color:white;
 }
 body{
     box-sizing:border-box;
     margin:0;
     padding:0;
-    background-color: #333C76;
+    background-color:rgb(206, 217, 233);
+   
 }
 
 h1{
-    color: #DAE2E9;
+    color: #49759c;
     margin:.5em;
     
     font-family: 'Noto Sans KR', sans-serif;
@@ -24,16 +27,63 @@ h3{
 }
 p{
     font-family: 'Noto Sans KR', sans-serif;
-    color:white;
+    color: #333C76;
     
 }
-
+button{
+    color:white;
+    /* background: rgb(45,200,237);
+    background: linear-gradient(27deg, rgba(45,200,237,1) 0%, rgba(84,138,240,1) 58%); */
+    background: rgb(96,159,196);
+    background: linear-gradient(27deg, rgba(96,159,196,1) 0%, rgba(35,62,112,1) 58%);
+    border:none;
+    padding:.5em;
+    border-radius:5px;
+    box-shadow: 3px 3px 5px 1px #9695959a;
+    border:1px solid rgb(67, 64, 216);
+}
+button:hover{
+    background: rgb(34,148,176);
+    background: linear-gradient(27deg, rgba(34,148,176,1) 0%, rgba(63,103,180,1) 58%);
+}
 
 ul{
     list-style:none;
     padding-inline-start: 0;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+   
 }
 li{
     padding:.3em;
-    color:white;
+    color: #333C76;
+    border:1px solid black;
+    margin:.5em;
+    
+
+}
+
+form{
+    border:1px solid black;
+    padding:1em;
+    /* max-width: 13em; */
+   
+}
+label > input {
+  display:block;
+ 
+}
+
+.label{
+    display:block;
+   
+}
+
+.checkboxes > label{
+    
+    display:inline-block;
+}
+
+.checkboxes > label > input {
+    display:inline-block;
 }

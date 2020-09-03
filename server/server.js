@@ -2,7 +2,7 @@ const express=require('express')
 const app=express();
 const bodyParser=require('body-parser')
 const port=1338;
-const {getAllBoats, getBoat, addBoat, search}=require('./database.js')
+const {getAllBoats, getBoat, addBoat, search, deleteBoat}=require('./database.js')
 
 
 // MIDDLEWARE--------
@@ -41,6 +41,13 @@ app.get('/api/boat', (req, res)=>{
        res.send(dataOrError) 
     })
    
+})
+//DELETE
+app.delete('/api/boat', (req, res)=>{
+    let id=req.query.id
+    deleteBoat(id, dataOrError=>{
+        res.send(dataOrError)
+    })
 })
 
 //sök

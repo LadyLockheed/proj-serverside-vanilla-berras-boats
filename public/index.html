@@ -30,10 +30,9 @@
         <!-- Hämta en specifik båt -->
         <div class='findBoat'>
             <h3>Hämta en båt på id</h3>
-            <!-- <p>Testa med tex Titanic, Black Pearl, Orca</p> -->
             
-            <!-- <input type='number' value='' placeholder='Id-number' id='inputIdNumber'> -->
-            <input type="text" id='inputFindBoat' value='5f4bf90ed91c47bb12e6e75b'>
+            
+            <input type="text" id='inputFindBoat' value=''>
             <button class='findBoatButton'>Hämta en spec båt</button>
             <div class='findBoatContainer'>
     
@@ -44,6 +43,18 @@
         <!-- Lägg till ny båt*********************** -->
         <div class="addBoat">
             <h3>Lägg till en helt ny båt</h3><p>Det blir en Ockelbo DC 21</p>
+            <form class="form">
+                <label class="label">Modellnamn: <input type="text" id="inputModelName" value=""></label> 
+                <label class="label">Byggnadsår: <input type="number" id="inputConstructionYear" value=""></label> 
+                <label class="label">Pris: <input type="number" id="inputPrice" value=""></label> 
+                <div class="checkboxes">
+              
+                   <label>Segel: <input type="checkbox" id="inputHasSail"></label> 
+                   <label>Motor: <input type="checkbox" id="inputHasMotor"></label>  
+                 
+                </div>
+           
+            </form>
             <button class="addBoatButton">Add new boat</button>
             <p class='newBoat'></p>
         </div>
@@ -51,16 +62,17 @@
 
         <!-- Search -->
         <div class='searchContainer'>
-            <h3>Sök på nåt skojsigt.</h3>
+            <h3>Search-engine</h3>
 
-           <label><input type="radio" name="category" value="word"> Word</label> 
-           <label><input type="radio" name="category" value="maxprice"> Max-price</label> 
+            <select name="categorys" id="categorys">
+                <option value="word">Word</option>
+                <option value="maxprice">Max price</option>
+                <option value="madebefore">Made before year..</option>
 
-            <!-- <label>Modellnamn</label> -->
-            <input type="text" id="searchInput" value="Orca">
-           
-        
+            </select>
 
+            
+            <input type="text" id="searchInput" value="">
             <button class="searchButton">Sök</button>
 
             <div>

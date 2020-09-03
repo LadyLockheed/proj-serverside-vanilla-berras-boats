@@ -5,11 +5,44 @@ const collectionName='boats'
 
         
 
-
+//GET all boats
 function getAllBoats(callback){
     get({}, callback)
 }
 
+//DELETE boat
+function deleteBoat(id, callback){
+    
+    let filter={_id:new ObjectID(id)}
+
+      MongoClient.connect(
+        url,
+        {useUnifiedTopology:true},
+        async (error, client)=>{
+            
+            if(error){
+                callback('ERROR! Kunde inte connecta. Attans.')
+                return;
+            }
+            const col=client.db(databaseName).collection(collectionName)
+    
+            try{
+                const result=await col.deleteOne(filter);
+                console.log("database, delete, result: ", result)
+                callback(result);
+    
+            } catch(error){
+                console.log('Query error: ', error.message);
+                callback('ERROR med query'); 
+            } finally{
+                client.close();
+            }
+      
+        })
+    
+}
+
+//SÖK
 function search(query, callback){
 
     const filter={}
@@ -21,8 +54,11 @@ function search(query, callback){
     }
     if(query.maxprice){
         
-       let numberPrice=Number(query.maxprice)
-       filter.price={$lt: parseFloat(numberPrice)}
+    //    let numberPrice=Number(query.maxprice)
+    //    filter.price={$lt: parseFloat(numberPrice)}
+
+     
+       filter.price={$lt: parseFloat(query.maxprice)}
 
     }
 
@@ -37,7 +73,7 @@ function search(query, callback){
             const col=client.db(databaseName).collection(collectionName)
             try{
                 console.log('I database, try. Filter: ', filter)
-                const cursor=await col.find(filter);
+                const cursor=await col.find(filter).limit(5);
                 const array=await cursor.toArray();
                 callback(array);
             
@@ -53,6 +89,8 @@ function search(query, callback){
 
 }
 
+
+//Hämta båt på id
 function getBoat(id, callback){
     // get({ _id: new ObjectID(id) }, array => callback( array[0] ))
     get({_id: new ObjectID(id)},callback)
@@ -89,7 +127,7 @@ function get( filter, callback) {
     }
 
 
-
+//POST
 function addBoat(requestBody, callback){
     MongoClient.connect(
         url,
@@ -124,6 +162,7 @@ module.exports={
     getAllBoats,
     getBoat,
     addBoat,
-    search
+    search,
+    deleteBoat
     
 }
