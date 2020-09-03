@@ -9,9 +9,18 @@ window.addEventListener('load',()=>{
     //POST ny båt
     let buttonAddBoat=document.querySelector('.addBoatButton')
     let newBoatMsg=document.querySelector('.newBoat')
-    let inputId=document.querySelector('#inputIdNumber')
-    //GET search name
+    
+    //GET search
     let buttonSearch=document.querySelector('.searchButton')
+    let inputSearchParam=document.querySelector('#searchInput')
+    let searchResultList=document.querySelector('.searchResultList')
+    let searchCategorys = document.querySelectorAll('input[name=category]');
+    //DELETE
+    let inputDelete=document.querySelector('#boatDelete')
+    let buttonDelete=document.querySelector('.deleteButton')
+    
+   
+
  
 
     buttonGetBoats.addEventListener('click', async()=>{
@@ -25,7 +34,7 @@ window.addEventListener('load',()=>{
             let li=document.createElement('li')
             
             li.className='boat'
-            li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price}`
+            li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price} <br> Id: ${boat._id}`
             // let button=document.createElement('button')
 
             //TODO Kan jag göra nåt med dessa knappar? Tex ta bort valt element?
@@ -40,15 +49,16 @@ window.addEventListener('load',()=>{
 
 
     buttonFindBoat.addEventListener('click', async()=>{
-        //TODO lägg in alternativ att man ska kunna söka på id också, kan då ha ett färdigt id som value='idnummer så står det färdigt i inputfältet.
-     
+      
         let inputParam=findBoatInput.value
+       
      
-        console.log(`/api/boat?searchParam=${inputParam}`)
+        // console.log(`/api/boat?searchParam=${inputParam}`)
         
         try{
             const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
-            const boat=await response.json();
+            const boats=await response.json();
+            const boat=boats[0];
             console.log('Hämtade båt: ', boat)
 
             findBoatContainer.innerHTML='';
@@ -72,33 +82,48 @@ window.addEventListener('load',()=>{
 
     buttonSearch.addEventListener('click', async()=>{
  
-        // let inputParam=findBoatInput.value
-        let inputParam='Orca'
-        console.log(`/api/search?searchParam=${inputParam}`)
+        let searchParam=inputSearchParam.value
+        let selectedCategory;
+        for (const category of searchCategorys){
+            if(category.checked){
+                selectedCategory=category.value
+            }
+        }
+
+        try{
+       
+            const response=await fetch (`/api/search?${selectedCategory}=${searchParam}`,{method:'GET'})
+            const results=await response.json();
+            console.log('Hämtat resultat: ', results)
+
+            searchResultList.innerHTML='';
+            results.forEach(result=>{
+              
+                let li=document.createElement('li')
+                li.className='result'
+                li.innerHTML= `Modell: ${result.modelName} <br> Price: ${result.price} <br> Id: ${result._id}`
+                searchResultList.appendChild(li)
         
-        const response=await fetch (`/api/search?searchParam=${inputParam}`,{method:'GET'})
+            })
 
-        const boat=await response.json();
-        console.log('Hämtade båt: ', boat)
-      
-
+        }
+        catch(error){
+            console.log('Nånting blev fel under sökningen: ', error.message)
+        }
+       
     })
 
+    buttonDelete.addEventListener('click', async()=>{
+       
+        let deleteBoat=inputDelete.value
+        console.log(deleteBoat)
+        //TODO göra en fetch med DELETE
+        //TODO i server.js göra en route som tar req.query och skickar den samt callback. Glöm ej att den ska heta app.delete
+        //TODO i server.js importera funktionen från database.
+        //TODO i database, skapa funktion för att ta bort. 
+        //TODO Använd deleteOne
+    })
 
-    // buttonSearch.addEventListener('click', async() =>{
-
-   
-
-    //     let inputParam="Orca"
-    //     console.log(`/api/search?searchParam=${inputParam}`)
-
-    //     const response=await fetch (`/api/search?searchParam=${inputParam}`,{method:'GET'})
-
-    //     const foundThis=await response.json();
-    //     console.log('Script: Hämtade båt: ', foundThis)
-
-
-    // })
 
     buttonAddBoat.addEventListener('click', async()=>{
    
@@ -116,7 +141,8 @@ window.addEventListener('load',()=>{
             method:'POST',
             body:newBoat
         });
-        const text=await response.text();
+        const text=await response.json();
+        console.log(text)
 
         newBoatMsg.innerHTML='Du la till en ny båt.'
 

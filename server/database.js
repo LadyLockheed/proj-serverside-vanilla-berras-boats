@@ -10,11 +10,48 @@ function getAllBoats(callback){
     get({}, callback)
 }
 
-// function getBoat(id, callback){
-//     // console.log('I getboat funktion, id är : ', `${id}`)
-//     get({modelName:`${id}`}, callback)
+function search(query, callback){
 
-// }
+    const filter={}
+   
+    if(query.word){
+       
+        filter.modelName={ "$regex": `.*${query.word}.*`,"$options":"i"};
+       
+    }
+    if(query.maxprice){
+        
+       let numberPrice=Number(query.maxprice)
+       filter.price={$lt: parseFloat(numberPrice)}
+
+    }
+
+    MongoClient.connect(
+        url,
+        {useUnifiedTopology:true},
+        async(error, client)=>{
+            if(error){
+                callback('Error, could not connect')
+                return;
+            }
+            const col=client.db(databaseName).collection(collectionName)
+            try{
+                console.log('I database, try. Filter: ', filter)
+                const cursor=await col.find(filter);
+                const array=await cursor.toArray();
+                callback(array);
+            
+            } catch(error){
+                console.log('Query error: ', error.message);
+                callback('ERROR med query'); 
+            } finally{
+                
+                client.close();
+            }
+        }
+    )
+
+}
 
 function getBoat(id, callback){
     // get({ _id: new ObjectID(id) }, array => callback( array[0] ))
@@ -86,6 +123,7 @@ function addBoat(requestBody, callback){
 module.exports={
     getAllBoats,
     getBoat,
-    addBoat
+    addBoat,
+    search
     
 }

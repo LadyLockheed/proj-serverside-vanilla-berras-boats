@@ -29,7 +29,7 @@
 
         <!-- Hämta en specifik båt -->
         <div class='findBoat'>
-            <h3>Hämta en specifik båt</h3>
+            <h3>Hämta en båt på id</h3>
             <!-- <p>Testa med tex Titanic, Black Pearl, Orca</p> -->
             
             <!-- <input type='number' value='' placeholder='Id-number' id='inputIdNumber'> -->
@@ -43,21 +43,43 @@
 
         <!-- Lägg till ny båt*********************** -->
         <div class="addBoat">
-            <h3>Lägg till en helt ny båt</h3><p>Det blir en Ockelbo dc 21</p> 
+            <h3>Lägg till en helt ny båt</h3><p>Det blir en Ockelbo DC 21</p>
             <button class="addBoatButton">Add new boat</button>
             <p class='newBoat'></p>
         </div>
 
 
-        <!-- Sök på nånting -->
+        <!-- Search -->
         <div class='searchContainer'>
-            <h3>Sök på nåt skojsigt. I det här fallet modellnamn</h3>
+            <h3>Sök på nåt skojsigt.</h3>
+
+           <label><input type="radio" name="category" value="word"> Word</label> 
+           <label><input type="radio" name="category" value="maxprice"> Max-price</label> 
+
+            <!-- <label>Modellnamn</label> -->
+            <input type="text" id="searchInput" value="Orca">
+           
+        
 
             <button class="searchButton">Sök</button>
+
+            <div>
+    
+                <ul class="searchResultList">
+                </ul>
+            </div>
 
 
         </div>
 
+        <!-- Delete -->
+        <div class="deleteContainer">
+            <h3>Ta bort en båt på id</h3>
+            <label><input type="text" id="boatDelete" value=""></label>
+            <button class='deleteButton'>Delete</button>
+
+        </div>
+       
 
         <!-- Lägg till flera nya båtar om det är tomt i databasen*********************** -->
         <div class="addGangOfBoats">
@@ -65,10 +87,6 @@
             <button class="addGangOfBoatsButton">Add gang of boats</button>
 
         </div>
-        
-
-       
-
 
     </main>
     

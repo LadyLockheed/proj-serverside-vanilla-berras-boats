@@ -2,7 +2,7 @@ const express=require('express')
 const app=express();
 const bodyParser=require('body-parser')
 const port=1338;
-const {getAllBoats, getBoat, addBoat}=require('./database.js')
+const {getAllBoats, getBoat, addBoat, search}=require('./database.js')
 
 
 // MIDDLEWARE--------
@@ -33,7 +33,7 @@ app.get('/api/boats', (req,res)=>{
    });
 })
 
-//hämta en specifik
+//hämta på id-nummer
 app.get('/api/boat', (req, res)=>{
     
     let id=req.query.searchParam
@@ -45,10 +45,8 @@ app.get('/api/boat', (req, res)=>{
 
 //sök
 app.get('/api/search', (req, res)=>{
-    // console.log('Queryn är: ', req.query.searchParam)
-    // res.send('search funkar!')
-    let id=req.query.searchParam
-    getBoat(id, dataOrError=>{
+   console.log("server.js, req.query: ", req.query)
+    search(req.query, dataOrError=>{
        res.send(dataOrError) 
     })
 })
