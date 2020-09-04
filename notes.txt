@@ -1,60 +1,100 @@
-TODO:
-lägg till fler söknycklar
-ändra radiobuttons till dropdown meny (flervalsmeny)
-
-
-gör så att båtarna hamnar i cards.
-
-
-
-
-
 
 
 let boatList=[
     {
-        modelName:'Regalskeppet Vasa', constructionYear:1627, 
+        modelName:'Regalskeppet Vasa', 
+        constructionYear:1627, 
         price:1000000,
         sailingBoat:'yes',
-        motor:'no'
+        motor:'no',
+        url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'
     },
     {
         modelName:'Titanic',
         constructionYear:1911,
         price:60000000,
         sailingBoat:'no',
-        motor:'yes'
+        motor:'yes',
+        url:''https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'
     },
     {
         modelName:'Ostindiefararen Götheborg',
         constructionYear:2003,
         price:250000000,
         sailingBoat:'yes',
-        motor:'yes'
+        motor:'yes',
+        url:'https://www.nyteknik.se/Nyhetsbrev_compost/Nyhetsbrev_Allm_nna_Compost/n7dxpy-gotheborg-seglar-700-394-ny-teknik.jpg/binary/original/gotheborg-seglar-700-394-ny-teknik.jpg'
     },
     {
-        modelName:'Black Pearl',
-        constructionYear:2003,
-        price:12.50,
+        modelName:'Ohlsson 22',
+        constructionYear:1989,
+        price:5000,
         sailingBoat:'yes',
-        motor:'no'
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/0380537654.jpg'
     },
     {
         modelName:'Slice of Life',
         constructionYear:2001,
         price:30500,
         sailingBoat:'no',
-        motor:'yes'
+        motor:'yes',
+        url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'
     },
     {
+        modelName:'Coronet 32 Oceanfarer',
+        constructionYear:1975,
+        price:420000,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.blocketcdn.se/pictures/5093741039.jpg'
+    },
+       {
+        modelName:'Nordkapp Avant 705',
+        constructionYear:2020,
+        price:729000,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.blocketcdn.se/pictures/9081878214.jpg'
+    },
+       {
+        modelName:'Havskajak',
+        constructionYear:1999,
+        price:5400,
+        sailingBoat:'no',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/0945062804.jpg'
+    },
+       {
         modelName:'Orca',
         constructionYear:1975,
         price:55700,
         sailingBoat:'no',
-        motor:'yes'
+        motor:'yes',
+        url:'https://i.redd.it/6eq4mnbb3w821.jpg'
+    },
+       {
+        modelName:'Jolle Walker bay 8',
+        constructionYear:2005,
+        price:8000,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/8840867421.jpg'
+        
+    },
+       {
+        modelName:'Optimistjolle McLaughlin',
+        constructionYear:2001,
+        price:11500,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/9786249019.jpg'
     },
 
 ]
+
+db.boats.insertMany=[{modelName:'Regalskeppet Vasa', constructionYear:1627, price:1000000, sailingBoat:'yes', motor:'no', url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'}, {modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no', motor:'yes', url:''https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'},{modelName:'Ostindiefararen Götheborg', constructionYear:2003, price:250000000, sailingBoat:'yes', motor:'yes', url:'https://www.nyteknik.se/Nyhetsbrev_compost/Nyhetsbrev_Allm_nna_Compost/n7dxpy-gotheborg-seglar-700-394-ny-teknik.jpg/binary/original/gotheborg-seglar-700-394-ny-teknik.jpg'}, {modelName:'Ohlsson 22',  constructionYear:1989, price:5000, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/0380537654.jpg'}, {modelName:'Slice of Life', constructionYear:2001, price:30500, sailingBoat:'no', motor:'yes', url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'}, {modelName:'Coronet 32 Oceanfarer', constructionYear:1975, price:420000, sailingBoat:'no', motor:'yes', url:'https://i.blocketcdn.se/pictures/5093741039.jpg'},{modelName:'Nordkapp Avant 705', constructionYear:2020, price:729000, sailingBoat:'no', motor:'yes', url:'https://i.blocketcdn.se/pictures/9081878214.jpg'}, {modelName:'Havskajak', constructionYear:1999, price:5400, sailingBoat:'no',
+motor:'no', url:'https://i.blocketcdn.se/pictures/0945062804.jpg'},{modelName:'Orca', constructionYear:1975, price:55700, sailingBoat:'no', motor:'yes', url:'https://i.redd.it/6eq4mnbb3w821.jpg'}, {modelName:'Jolle Walker bay 8', constructionYear:2005, price:8000, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/8840867421.jpg'},{modelName:'Optimistjolle McLaughlin', constructionYear:2001, price:11500, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/9786249019.jpg'},]
 
 db.boats.insertOne({modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no',motor:'yes'})
 
@@ -70,7 +110,99 @@ constructionYear:2001,price:30500,sailingBoat:'no',
 motor:'yes'},{modelName:'Orca',constructionYear:1975,price:55700,sailingBoat:'no',motor:'yes'}])
 
 //ett gäng nya båtar
-db.boats.insertMany([{modelName:'Kanadensare',constructionYear:1300, price:100,sailingBoat:'no',motor:'no'},{modelName:'Kajak',constructionYear:1998,
-price:5000,sailingBoat:'no',motor:'yes'},{modelName:'Great White 300A alu rib jokey',constructionYear:2020,price:34000,sailingBoat:'no',motor:'yes'},{modelName:'Nimbus 26',
-constructionYear:2009,price:285000,sailingBoat:'no',
-motor:'yes'},{modelName:'Winga',constructionYear:1987,price:375000,sailingBoat:'yes',motor:'yes'}])
+db.boats.insertMany([
+    {
+        modelName:'Regalskeppet Vasa', 
+        constructionYear:1627, 
+        price:1000000,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'
+    },
+    {
+        modelName:'Titanic',
+        constructionYear:1911,
+        price:60000000,
+        sailingBoat:'no',
+        motor:'yes',
+        url:''https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'
+    },
+    {
+        modelName:'Ostindiefararen Götheborg',
+        constructionYear:2003,
+        price:250000000,
+        sailingBoat:'yes',
+        motor:'yes',
+        url:'https://www.nyteknik.se/Nyhetsbrev_compost/Nyhetsbrev_Allm_nna_Compost/n7dxpy-gotheborg-seglar-700-394-ny-teknik.jpg/binary/original/gotheborg-seglar-700-394-ny-teknik.jpg'
+    },
+    {
+        modelName:'Ohlsson 22',
+        constructionYear:1989,
+        price:5000,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/0380537654.jpg'
+    },
+    {
+        modelName:'Slice of Life',
+        constructionYear:2001,
+        price:30500,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'
+    },
+    {
+        modelName:'Coronet 32 Oceanfarer',
+        constructionYear:1975,
+        price:420000,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.blocketcdn.se/pictures/5093741039.jpg'
+    },
+       {
+        modelName:'Nordkapp Avant 705',
+        constructionYear:2020,
+        price:729000,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.blocketcdn.se/pictures/9081878214.jpg'
+    },
+       {
+        modelName:'Havskajak',
+        constructionYear:1999,
+        price:5400,
+        sailingBoat:'no',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/0945062804.jpg'
+    },
+       {
+        modelName:'Orca',
+        constructionYear:1975,
+        price:55700,
+        sailingBoat:'no',
+        motor:'yes',
+        url:'https://i.redd.it/6eq4mnbb3w821.jpg'
+    },
+       {
+        modelName:'Jolle Walker bay 8',
+        constructionYear:2005,
+        price:8000,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/8840867421.jpg'
+        
+    },
+       {
+        modelName:'Optimistjolle McLaughlin',
+        constructionYear:2001,
+        price:11500,
+        sailingBoat:'yes',
+        motor:'no',
+        url:'https://i.blocketcdn.se/pictures/9786249019.jpg'
+    },
+
+])
+
+
+//testfil från script
+let originalDatabaseBoatsTest=[{modelname:'Regalskeppet Vasa', constructionYear:1627, price:1000000, sailingBoat:'yes', motor:'no', url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'},{modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no', motor:'yes', url:'https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'},{modelName:'Ostindiefararen Götheborg', constructionYear:2003, price:250000000, sailingBoat:'yes', motor:'yes', url:'https://www.nyteknik.se/Nyhetsbrev_compost/Nyhetsbrev_Allm_nna_Compost/n7dxpy-gotheborg-seglar-700-394-ny-teknik.jpg/binary/original/gotheborg-seglar-700-394-ny-teknik.jpg'},{modelName:'Ohlsson 22',  constructionYear:1989, price:5000, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/0380537654.jpg'},{modelName:'Oe 32',constructionYear:1982, price:360000, sailingBoat:'yes', motor:'yes', url:'https://i.blocketcdn.se/pictures/0983071196.jpg'},{modelName:'Slice of Life', constructionYear:2001, price:30500, sailingBoat:'no', motor:'yes', url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'},  ]

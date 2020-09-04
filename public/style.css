@@ -1,10 +1,10 @@
-.getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer, .deleteContainer{
-    /* border:1px solid rgb(83, 83, 83); */
+.getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer, .deleteContainer, .restoreContainer{
     border-radius:5px;
     box-shadow: 3px 3px 10px 3px #cacaca65;
-    margin:1em;
+    margin:1em 1.5em 1em 1.5em;
     padding:1em;
-    background-color:white;
+    /* background-color:white; */
+    background-color:#efedee;
 }
 body{
     box-sizing:border-box;
@@ -12,23 +12,6 @@ body{
     padding:0;
     background-color:rgb(206, 217, 233);
    
-}
-
-h1{
-    color: #49759c;
-    margin:.5em;
-    
-    font-family: 'Noto Sans KR', sans-serif;
-   
-}
-h3{
-    color:#8ba1cc;
-    font-family:'Mulish', sans-serif
-}
-p{
-    font-family: 'Noto Sans KR', sans-serif;
-    color: #333C76;
-    
 }
 button{
     color:white;
@@ -40,11 +23,60 @@ button{
     padding:.5em;
     border-radius:5px;
     box-shadow: 3px 3px 5px 1px #9695959a;
-    border:1px solid rgb(67, 64, 216);
+   
 }
 button:hover{
     background: rgb(34,148,176);
     background: linear-gradient(27deg, rgba(34,148,176,1) 0%, rgba(63,103,180,1) 58%);
+}
+
+
+.image{
+    /* background-image:url("https://images.unsplash.com/photo-1520013817300-1f4c1cb245ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1987&q=80"); */
+    /* background-image:url("https://images.unsplash.com/photo-1553246969-7dcb4259a87b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
+    /* background-image:url("https://images.unsplash.com/photo-1470645792662-dd18394f8c97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80"); */
+    /* background-image:url("https://images.unsplash.com/photo-1505183577574-b52178572cc1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1789&q=80"); */
+    background-image:url("https://images.unsplash.com/photo-1595410603589-69d41b5f804f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80");
+    /* background-image:url("https://images.unsplash.com/photo-1546623018-d83234b0544c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1891&q=80"); */
+    height:15em;
+    background-size:cover;
+    background-position:right center;
+    position:relative;
+    background-repeat: no-repeat;
+}
+/* .imagetest{
+    background-image:url("https://i.blocketcdn.se/pictures/5093741039.jpg");
+  
+    height:126px;
+    width:168px;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-position: center center;
+} */
+.image > h1{
+    position:absolute;
+    top:175px;;
+    color:rgb(33, 50, 109);
+    font-size:3em;
+    margin:.5em;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.image >button{
+    margin: 2em;
+    
+}
+.getAllBoats{
+    margin-top:4em;
+}
+h3{
+    /* color:#8ba1cc; */
+    color:rgb(34, 61, 148);
+    font-family:'Mulish', sans-serif
+}
+p{
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #333C76;
+    
 }
 
 ul{
@@ -57,10 +89,28 @@ ul{
 li{
     padding:.3em;
     color: #333C76;
-    border:1px solid black;
-    margin:.5em;
-    
+    border:1px solid rgb(34, 61, 148);
+    border-radius:5px;
+    margin:.5em; 
+    /* display:flex; */
+    display:grid;
+   
+    grid-template-rows: 2fr 1fr;
+   
+   
 
+}
+
+li > button {
+    color:white;
+    width:55px;
+    height:30px;
+    grid-row:2/3;
+    justify-self:end;
+    text-align:center;
+
+    /* display:block; */
+    
 }
 
 form{

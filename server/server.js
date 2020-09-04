@@ -2,7 +2,7 @@ const express=require('express')
 const app=express();
 const bodyParser=require('body-parser')
 const port=1338;
-const {getAllBoats, getBoat, addBoat, search, deleteBoat}=require('./database.js')
+const {getAllBoats, getBoat, addBoat, search, deleteBoat, resetDatabase}=require('./database.js')
 
 
 // MIDDLEWARE--------
@@ -17,14 +17,9 @@ app.use( (req, res, next) => {
 	next()
 })
 
-
 // ROUTES--------
 
-app.get('/api/test', (req, res)=>{
-    res.send('Test funkar')
-})
-
-//hämta alla
+// GET hämta alla
 app.get('/api/boats', (req,res)=>{
     console.log('GET /api/boats')
     //skickar in en funktion som parameter, i database.js heter parametern callback
@@ -33,7 +28,7 @@ app.get('/api/boats', (req,res)=>{
    });
 })
 
-//hämta på id-nummer
+//GET hämta på id-nummer
 app.get('/api/boat', (req, res)=>{
     
     let id=req.query.searchParam
@@ -42,7 +37,16 @@ app.get('/api/boat', (req, res)=>{
     })
    
 })
-//DELETE
+
+// GET search
+app.get('/api/search', (req, res)=>{
+    console.log("server.js, req.query: ", req.query)
+     search(req.query, dataOrError=>{
+        res.send(dataOrError) 
+     })
+ })
+
+//DELETE boat on id
 app.delete('/api/boat', (req, res)=>{
     let id=req.query.id
     deleteBoat(id, dataOrError=>{
@@ -50,21 +54,19 @@ app.delete('/api/boat', (req, res)=>{
     })
 })
 
-//sök
-app.get('/api/search', (req, res)=>{
-   console.log("server.js, req.query: ", req.query)
-    search(req.query, dataOrError=>{
-       res.send(dataOrError) 
-    })
-})
-
-//lägg till en ny båt
+//POST lägg till en ny båt
 app.post('/api/addBoat', (req, res)=>{
 
     addBoat(req.body, dataOrError =>{
         res.send(dataOrError)
     })
    
+})
+
+app.post('/api/resetDatabase', (req, res)=>{
+    resetDatabase(req.body, dataOrError=>{
+        res.send(dataOrError)
+    })
 })
 
 

@@ -12,15 +12,22 @@
 <body>
     <main>
 
-        <h1>Berras Båtar</h1>
+  
+        <div class="image">
+            <button class='getBoatsButton'>Get all boats</button>
+            <h1>Berras Boats - a restful API demonstration</h1>
+
+        </div>
+        <!-- <div class="imagetest">
+
+
+        </div> -->
 
         <!-- Hämta alla båtar******************** -->
         <div class='getAllBoats'>
-            <h3>Hämta alla båtar</h3>
+            <h3>Get all boats</h3>
 
-            <button class='getBoatsButton'>Hämta alla båtar</button>
             <div>
-    
                 <ul class='boatList'>
                 </ul>
             </div>
@@ -29,11 +36,10 @@
 
         <!-- Hämta en specifik båt -->
         <div class='findBoat'>
-            <h3>Hämta en båt på id</h3>
-            
+            <h3>Get boat on id</h3>
             
             <input type="text" id='inputFindBoat' value=''>
-            <button class='findBoatButton'>Hämta en spec båt</button>
+            <button class='findBoatButton'>Get boat</button>
             <div class='findBoatContainer'>
     
            
@@ -42,20 +48,20 @@
 
         <!-- Lägg till ny båt*********************** -->
         <div class="addBoat">
-            <h3>Lägg till en helt ny båt</h3><p>Det blir en Ockelbo DC 21</p>
+            <h3>Add a new boat</h3>
             <form class="form">
-                <label class="label">Modellnamn: <input type="text" id="inputModelName" value=""></label> 
-                <label class="label">Byggnadsår: <input type="number" id="inputConstructionYear" value=""></label> 
-                <label class="label">Pris: <input type="number" id="inputPrice" value=""></label> 
+                <label class="label">Modelname: <input type="text" id="inputModelName" value=""></label> 
+                <label class="label">Construction-year: <input type="number" id="inputConstructionYear" value=""></label> 
+                <label class="label">Price: <input type="number" id="inputPrice" value=""></label> 
                 <div class="checkboxes">
               
-                   <label>Segel: <input type="checkbox" id="inputHasSail"></label> 
-                   <label>Motor: <input type="checkbox" id="inputHasMotor"></label>  
+                   <label>Has sail: <input type="checkbox" id="inputHasSail"></label> 
+                   <label>Has motor: <input type="checkbox" id="inputHasMotor"></label>  
                  
                 </div>
-           
+                <label class="label">Image (url): <input type="text" id="inputImgUrl" value=""></label> 
             </form>
-            <button class="addBoatButton">Add new boat</button>
+            <button class="addBoatButton">Add boat</button>
             <p class='newBoat'></p>
         </div>
 
@@ -71,9 +77,8 @@
 
             </select>
 
-            
             <input type="text" id="searchInput" value="">
-            <button class="searchButton">Sök</button>
+            <button class="searchButton">Search</button>
 
             <div>
     
@@ -81,23 +86,13 @@
                 </ul>
             </div>
 
-
         </div>
 
-        <!-- Delete -->
-        <div class="deleteContainer">
-            <h3>Ta bort en båt på id</h3>
-            <label><input type="text" id="boatDelete" value=""></label>
-            <button class='deleteButton'>Delete</button>
-
-        </div>
-       
-
-        <!-- Lägg till flera nya båtar om det är tomt i databasen*********************** -->
-        <div class="addGangOfBoats">
-            <h3>Tomt i databasen?</h3><p>Lägg till ett helt gäng båtar. Bara att klicka.</p>
-            <button class="addGangOfBoatsButton">Add gang of boats</button>
-
+        <!-- Restore database*********************** -->
+        <div class="restoreContainer">
+            <h3>Restore database</h3><p>Empty database and reinstore original boatlist</p>
+            <button class="restoreButton">Reset</button>
+            <p class='restoreMsg'></p>
         </div>
 
     </main>
