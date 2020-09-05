@@ -82,20 +82,40 @@ function deleteBoat(id, callback){
 function search(query, callback){
 
     const filter={}
+    let sortKey={}
+    
+    if(query.order=='name_asc'){
+        console.log('i if sats för asc_name');
+       sortKey={modelName:1}
+    
+    }
    
     if(query.word){
 
         filter.modelName={ "$regex": `.*${query.word}.*`,"$options":"i"};  
+        console.log('database sort: ', sortKey)
+        console.log('database filter: ', filter)
     }
     if(query.maxprice){
 
        filter.price={$lt: parseFloat(query.maxprice)}
-
     }
     if(query.madebefore){
-        console.log("database, i madebefore")
+        
         filter.constructionYear={$lt:Number(query.madebefore)}
     }
+    if(query.madeafter){
+
+        filter.constructionYear={$gt:Number(query.madeafter)}
+    }
+    if(query.is_sail){
+        filter.sailingBoat=query.is_sail;
+    }
+    if(query.has_motor){
+
+        filter.motor=query.has_motor;
+    }
+
 
     MongoClient.connect(
         url,
@@ -107,8 +127,8 @@ function search(query, callback){
             }
             const col=client.db(databaseName).collection(collectionName)
             try{
-                console.log('I database, try. Filter: ', filter)
-                const cursor=await col.find(filter).limit(5);
+                
+                const cursor=await col.find(filter).sort(sortKey).limit(5);
                 const array=await cursor.toArray();
                 callback(array);
             

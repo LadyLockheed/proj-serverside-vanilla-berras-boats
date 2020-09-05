@@ -14,7 +14,7 @@
 
   
         <div class="image">
-            <button class='getBoatsButton'>Get all boats</button>
+            
             <h1>Berras Boats - a restful API demonstration</h1>
 
         </div>
@@ -26,6 +26,7 @@
         <!-- Hämta alla båtar******************** -->
         <div class='getAllBoats'>
             <h3>Get all boats</h3>
+            <button class='getBoatsButton'>Get all boats</button>
 
             <div>
                 <ul class='boatList'>
@@ -55,8 +56,8 @@
                 <label class="label">Price: <input type="number" id="inputPrice" value=""></label> 
                 <div class="checkboxes">
               
-                   <label>Has sail: <input type="checkbox" id="inputHasSail"></label> 
-                   <label>Has motor: <input type="checkbox" id="inputHasMotor"></label>  
+                   <label>Sail: <input type="checkbox" id="inputHasSail"></label> 
+                   <label>Motor: <input type="checkbox" id="inputHasMotor"></label>  
                  
                 </div>
                 <label class="label">Image (url): <input type="text" id="inputImgUrl" value=""></label> 
@@ -69,12 +70,20 @@
         <!-- Search -->
         <div class='searchContainer'>
             <h3>Search-engine</h3>
+            <p>Vid sök på sail och motor, skriv in yes eller no</p>
 
             <select name="categorys" id="categorys">
                 <option value="word">Word</option>
                 <option value="maxprice">Max price</option>
                 <option value="madebefore">Made before year..</option>
+                <option value="madeafter">Made after year..</option>
+                <option value="is_sail">Has sail</option>
+                <option value="has_motor">Has motor</option>
 
+            </select>
+            <select name='sortKeys' id='sortKeys'>
+
+                <option value='name_asc'>Sort a-ö</option>
             </select>
 
             <input type="text" id="searchInput" value="">

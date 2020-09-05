@@ -63,6 +63,7 @@ app.post('/api/addBoat', (req, res)=>{
    
 })
 
+//POST reset database
 app.post('/api/resetDatabase', (req, res)=>{
     resetDatabase(req.body, dataOrError=>{
         res.send(dataOrError)

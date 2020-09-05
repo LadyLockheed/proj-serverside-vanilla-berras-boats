@@ -20,6 +20,7 @@ window.addEventListener('load',()=>{
     let inputSearchParam=document.querySelector('#searchInput')
     let searchResultList=document.querySelector('.searchResultList')
     let category=document.querySelector('#categorys')
+    let sortKeys=document.querySelector('#sortKeys')
     //DELETE
     let buttonDelete=document.querySelector('buttonDelete')
     //DELETE GET Restore database
@@ -38,9 +39,16 @@ window.addEventListener('load',()=>{
         boatList.innerHTML='';
         boatsObject.forEach(boat=>{
             
+            let image=document.createElement('img');
+            image.className='boatImage';
+           
+            image.style.height='150px';
+            image.style.width='200px';
+            image.src=boat.url;
+
             let li=document.createElement('li')
             li.className='boat'
-            li.innerHTML= `Modell: ${boat.modelName} <br> Pris: ${boat.price} <br> Byggdes år: ${boat.constructionYear} <br> Id: ${boat._id}`
+            li.innerHTML= `<strong>${boat.modelName}</strong> <br> Price: ${boat.price} <br> Construction-year: ${boat.constructionYear} <br> Id: ${boat._id}`
             let button=document.createElement('button')
             button.innerHTML='Delete'
             button.className=buttonDelete
@@ -58,15 +66,11 @@ window.addEventListener('load',()=>{
                 }
                 getBoats();
             })
-            //TODO TEsta att lägga till bild från url i sök båt på id istället, då jobbar jag bara med en båt.
-            // let imageDiv=document.createElement('div')
-            // imageDiv.className='boatImage'
-            // imageDiv.style.backgroundImage="url('boat.url')";
-            // imageDiv.style.height='150px';
-            // imageDiv.style.width='150px'
+         
+            li.appendChild(image)
             boatList.appendChild(li)
             li.appendChild(button)
-            // li.appendChild(imageDiv)
+          
            
         })
     }
@@ -98,7 +102,7 @@ window.addEventListener('load',()=>{
             image.className='boatImage';
             image.style.height='150px';
             image.style.width='150px';
-            image.setAttribute("src", "boat.url")
+           image.src=boat.url;
             findBoatContainer.appendChild(image)
 
 
@@ -119,19 +123,20 @@ window.addEventListener('load',()=>{
 
         let searchParam=inputSearchParam.value
         let selectedCategory=category.value
-        
+        let sortKey=sortKeys.value
+      console.log(sortKey)
         try{
        
-            const response=await fetch (`/api/search?${selectedCategory}=${searchParam}`,{method:'GET'})
+            const response=await fetch (`/api/search?${selectedCategory}=${searchParam}&order=${sortKey}`,{method:'GET'})
             const results=await response.json();
            
             searchResultList.innerHTML='';
             results.forEach(result=>{
               
-                let li=document.createElement('li')
-                li.className='result'
-                li.innerHTML= `Modell: ${result.modelName} <br> Price: ${result.price} <br> Byggdes år: ${result.constructionYear} <br> Id: ${result._id}`
-                searchResultList.appendChild(li)
+                let p=document.createElement('p')
+                p.className='result'
+                p.innerHTML= `${result.modelName} <br> Price: ${result.price} <br> Byggdes år: ${result.constructionYear}`
+                searchResultList.appendChild(p)
         
             })
 
@@ -181,7 +186,7 @@ window.addEventListener('load',()=>{
     //POST restore database
     buttonRestore.addEventListener('click', async()=>{
       
-        let originalDatabaseBoats=[{modelName:'Regalskeppet Vasa', constructionYear:1627, price:1000000, sailingBoat:'yes', motor:'no', url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'}, {modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no', motor:'yes', url:'https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'},{modelName:'Ostindiefararen Götheborg', constructionYear:2003, price:250000000, sailingBoat:'yes', motor:'yes', url:'https://www.nyteknik.se/Nyhetsbrev_compost/Nyhetsbrev_Allm_nna_Compost/n7dxpy-gotheborg-seglar-700-394-ny-teknik.jpg/binary/original/gotheborg-seglar-700-394-ny-teknik.jpg'}, {modelName:'Ohlsson 22',  constructionYear:1989, price:5000, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/0380537654.jpg'}, {modelName:'Slice of Life', constructionYear:2001, price:30500, sailingBoat:'no', motor:'yes', url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'}, {modelName:'Coronet 32 Oceanfarer', constructionYear:1975, price:420000, sailingBoat:'no', motor:'yes', url:'https://i.blocketcdn.se/pictures/5093741039.jpg'},{modelName:'Nordkapp Avant 705', constructionYear:2020, price:729000, sailingBoat:'no', motor:'yes', url:'https://i.blocketcdn.se/pictures/9081878214.jpg'}, {modelName:'Havskajak', constructionYear:1999, price:5400, sailingBoat:'no', motor:'no', url:'https://i.blocketcdn.se/pictures/0945062804.jpg'},{modelName:'Orca', constructionYear:1975, price:55700, sailingBoat:'no', motor:'yes', url:'https://i.redd.it/6eq4mnbb3w821.jpg'}, {modelName:'Jolle Walker bay 8', constructionYear:2005, price:8000, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/8840867421.jpg'},{modelName:'Optimistjolle McLaughlin', constructionYear:2001, price:11500, sailingBoat:'yes', motor:'no', url:'https://i.blocketcdn.se/pictures/9786249019.jpg'}];
+        let originalDatabaseBoats=[{modelName:'Regalskeppet Vasa', constructionYear:1627, price:1000000, sailingBoat:'yes', motor:'no', url:'https://www.so-rummet.se/sites/default/files/nu_och_da/vasaskeppet-regalskeppet-vasa_0.jpg'}, {modelName:'Titanic', constructionYear:1911, price:60000000, sailingBoat:'no', motor:'yes', url:'https://historiskamedia.se/wp-content/uploads/2019/06/Titanic_sista-fotot.jpg'},{modelName:'Ostindiefararen Götheborg', constructionYear:2003, price:250000000, sailingBoat:'yes', motor:'yes', url:'https://mb.cision.com/Public/2889/9807569/97cc772d45b5d812_800x800ar.jpg'}, {modelName:'Polisbåt 39-9910',  constructionYear:2018, price:5000, sailingBoat:'no', motor:'yes', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Polisb%C3%A5t_9910_M%C3%A4laren.jpg/420px-Polisb%C3%A5t_9910_M%C3%A4laren.jpg'}, {modelName:'Slice of Life', constructionYear:2001, price:30500, sailingBoat:'no', motor:'yes', url:'https://i.pinimg.com/originals/d1/b9/d1/d1b9d1fe61aed5fb2caf2dc503f745a2.jpg'}, {modelName:'Swiftships 35PB1208 E-1455', constructionYear:1975, price:420000, sailingBoat:'no', motor:'yes', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/160815-N-GP524-465.jpg/1200px-160815-N-GP524-465.jpg'},{modelName:'Pop pop boat', constructionYear:1975, price:100, sailingBoat:'no', motor:'yes', url:'https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Knatterboot.jpg/330px-Knatterboot.jpg'}, {modelName:'Havskajak', constructionYear:2020, price:5400, sailingBoat:'no', motor:'no', url:'https://stockholmkajak.se/pub_images/large/NordR_S_Yellow.jpg'},{modelName:'Orca', constructionYear:1975, price:55700, sailingBoat:'no', motor:'yes', url:'https://i.redd.it/6eq4mnbb3w821.jpg'}, {modelName:'Ubåt HMS Södermanland ', constructionYear:1988, price:8000, sailingBoat:'no', motor:'yes', url:'https://www.forsvarsmakten.se/imagevault/publishedmedia/z8ws1pihym1bknq4gtgy/DSC_0106.jpg'},{modelName:'Waterworld Trimaran', constructionYear:1995, price:11500, sailingBoat:'yes', motor:'no', url:'https://trienthusiasts.files.wordpress.com/2015/07/waterworld-trimaran-sailboat-31.jpg'}];
       
         const response= await fetch('/api/resetDatabase', {
             headers:{
