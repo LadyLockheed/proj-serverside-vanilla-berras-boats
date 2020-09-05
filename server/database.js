@@ -3,6 +3,48 @@ const url='mongodb://localhost:27017';
 const databaseName='berrasBoats'
 const collectionName='boats'
 
+function updateBoat(requestBody, callback){
+    console.log('i database updateboat, requestBody', requestBody)
+
+    
+    
+
+    
+
+
+    MongoClient.connect(
+    url,
+    {useUnifiedTopology:true},
+    async(error, client)=>{
+        if (error){
+            callback('Error, could not connect.')
+            return;
+        }
+        const col=client.db(databaseName).collection(collectionName)
+        try{
+
+            //await col.updateOne({_id:new ObjectID(doc.query.id)}, {$set:doc.body})
+            //callback({
+            //result:result.result
+            //ops:result.ops
+            //})      try{
+          
+            const result=await col.updateOne({_id:new ObjectID(requestBody.boatId)},{$set:{modelName:requestBody.updateName}})
+                callback({
+                    result:result.result,
+                    ops:result.ops
+                })
+
+        } catch(error){
+            console.log('Query error: ', error.message);
+            callback('ERROR med query'); 
+        } finally{
+            client.close();
+        }
+    })
+
+}
+
 
 function get( filter, callback) {
     //För att kunna connecta med mongodb
@@ -64,7 +106,6 @@ function deleteBoat(id, callback){
     
             try{
                 const result=await col.deleteOne(filter);
-                console.log("database, delete, result: ", result)
                 callback(result);
     
             } catch(error){
@@ -85,16 +126,24 @@ function search(query, callback){
     let sortKey={}
     
     if(query.order=='name_asc'){
-        console.log('i if sats för asc_name');
        sortKey={modelName:1}
-    
+    }
+    if(query.order=='name_desc'){
+        sortKey={modelName:-1}
+    }
+    if(query.order=='lowprice'){
+        sortKey={price:1}
+    }
+    if(query.order=='oldest'){
+        sortKey={constructionYear:1}
+    }
+    if(query.order=='newest'){
+        sortKey={constructionYear:-1}
     }
    
     if(query.word){
 
         filter.modelName={ "$regex": `.*${query.word}.*`,"$options":"i"};  
-        console.log('database sort: ', sortKey)
-        console.log('database filter: ', filter)
     }
     if(query.maxprice){
 
@@ -115,7 +164,6 @@ function search(query, callback){
 
         filter.motor=query.has_motor;
     }
-
 
     MongoClient.connect(
         url,
@@ -214,6 +262,7 @@ module.exports={
     addBoat,
     search,
     deleteBoat,
-    resetDatabase
+    resetDatabase,
+    updateBoat
     
 }

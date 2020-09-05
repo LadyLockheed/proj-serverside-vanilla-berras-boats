@@ -35,6 +35,17 @@
 
         </div>
 
+        <!-- Ändra på en båt -->
+        <div class="modifyBoat">
+            <h3>Modify boatmodell</h3>
+            <label class='label'>New model:<input type="text" id='inputModify' value=''></label>
+            <label class='label'>Id<input type="text" id='inputId' value=''></label>
+            <button class='updateBoatButton'>Update</button>
+
+
+
+        </div>
+
         <!-- Hämta en specifik båt -->
         <div class='findBoat'>
             <h3>Get boat on id</h3>
@@ -82,8 +93,11 @@
 
             </select>
             <select name='sortKeys' id='sortKeys'>
-
                 <option value='name_asc'>Sort a-ö</option>
+                <option value='name_desc'>Sort ö-a</option>
+                <option value='lowprice'>Lowest price</option>
+                <option value='oldest'>Oldest</option>
+                <option value='newest'>Newest</option>
             </select>
 
             <input type="text" id="searchInput" value="">

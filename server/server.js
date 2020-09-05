@@ -2,7 +2,7 @@ const express=require('express')
 const app=express();
 const bodyParser=require('body-parser')
 const port=1338;
-const {getAllBoats, getBoat, addBoat, search, deleteBoat, resetDatabase}=require('./database.js')
+const {getAllBoats, getBoat, addBoat, search, deleteBoat, resetDatabase, updateBoat}=require('./database.js')
 
 
 // MIDDLEWARE--------
@@ -69,6 +69,16 @@ app.post('/api/resetDatabase', (req, res)=>{
         res.send(dataOrError)
     })
 })
+
+//PUT update boat
+app.put('/api/updateBoat', (req,res)=>{
+    console.log('server.js, i updateBoat: ', req.body)
+    updateBoat(req.body, dataOrError=>{
+        res.send(dataOrError)
+    })
+})
+
+
 
 
 //START WEBBSERVER

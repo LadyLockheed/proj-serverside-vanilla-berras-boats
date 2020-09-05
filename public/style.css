@@ -1,4 +1,4 @@
-.getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer, .deleteContainer, .restoreContainer{
+.getAllBoats, .addBoat, .addGangOfBoats, .findBoat, .searchContainer, .deleteContainer, .restoreContainer, .modifyBoat{
     border-radius:5px;
     box-shadow: 3px 3px 10px 3px #cacaca65;
     margin:1em 1.5em 1em 1.5em;
@@ -99,7 +99,7 @@ li > button {
     color:white;
     width:55px;
     height:30px;
-    grid-row:3/4;
+    grid-row:4/5;
     justify-self:end;
     align-self:end;
     text-align:center;

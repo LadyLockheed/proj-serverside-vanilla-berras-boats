@@ -21,11 +21,37 @@ window.addEventListener('load',()=>{
     let searchResultList=document.querySelector('.searchResultList')
     let category=document.querySelector('#categorys')
     let sortKeys=document.querySelector('#sortKeys')
+    //PUT update boat model
+    let buttonUpdate=document.querySelector('.updateBoatButton')
+    let inputModify=document.querySelector('#inputModify')
+    let inputId=document.querySelector('#inputId')
     //DELETE
     let buttonDelete=document.querySelector('buttonDelete')
     //DELETE GET Restore database
     let buttonRestore=document.querySelector('.restoreButton')
     let restoreMsg=document.querySelector('.restoreMsg')
+
+    buttonUpdate.addEventListener('click', async()=>{
+
+        const update=inputModify.value
+        const id=inputId.value
+        console.log("script, update och id: ", update, id)
+        
+        const response= await fetch('/api/updateBoat', {
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            method:'put',
+            body:JSON.stringify({
+                updateName:inputModify.value,
+                boatId:inputId.value
+            })
+        });
+        const text=await response.json();
+        console.log(text)
+
+    })
 
 
 
@@ -90,8 +116,6 @@ window.addEventListener('load',()=>{
             const response=await fetch (`/api/boat?searchParam=${inputParam}`,{method:'GET'})
             const boats=await response.json();
             const boat=boats[0];
-            console.log(boat)
-            console.log(boat.url)
            
             findBoatContainer.innerHTML='';
             let p=document.createElement('p');
@@ -124,7 +148,7 @@ window.addEventListener('load',()=>{
         let searchParam=inputSearchParam.value
         let selectedCategory=category.value
         let sortKey=sortKeys.value
-      console.log(sortKey)
+      
         try{
        
             const response=await fetch (`/api/search?${selectedCategory}=${searchParam}&order=${sortKey}`,{method:'GET'})
