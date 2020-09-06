@@ -23,19 +23,22 @@ window.addEventListener('load',()=>{
     let sortKeys=document.querySelector('#sortKeys')
     //PUT update boat model
     let buttonUpdate=document.querySelector('.updateBoatButton')
-    let inputModify=document.querySelector('#inputModify')
+    let inputModifyModel=document.querySelector('#inputModifyModel')
+    let inputModifyPrice=document.querySelector('#inputModifyPrice')
+    let inputModifyConstructionYear=document.querySelector('#inputModifyConstructionYear')
     let inputId=document.querySelector('#inputId')
+    let modifyBoatContainer=document.querySelector('.modifyBoat')
     //DELETE
     let buttonDelete=document.querySelector('buttonDelete')
     //DELETE GET Restore database
     let buttonRestore=document.querySelector('.restoreButton')
     let restoreMsg=document.querySelector('.restoreMsg')
 
-    buttonUpdate.addEventListener('click', async()=>{
 
-        const update=inputModify.value
-        const id=inputId.value
-        console.log("script, update och id: ", update, id)
+    //TODO göm updateformuläret när klar
+
+    //TODO evenmtulell lägg in ancortag på restoreknappenm och kör en getBoats.
+    buttonUpdate.addEventListener('click', async()=>{
         
         const response= await fetch('/api/updateBoat', {
             headers:{
@@ -44,12 +47,16 @@ window.addEventListener('load',()=>{
             },
             method:'put',
             body:JSON.stringify({
-                updateName:inputModify.value,
+                updateName:inputModifyModel.value,
+                updatePrice:inputModifyPrice.value,
+                updateConstructionYear:inputModifyConstructionYear.value,
                 boatId:inputId.value
             })
         });
         const text=await response.json();
         console.log(text)
+        getBoats();
+
 
     })
 
@@ -75,16 +82,14 @@ window.addEventListener('load',()=>{
             let li=document.createElement('li')
             li.className='boat'
             li.innerHTML= `<strong>${boat.modelName}</strong> <br> Price: ${boat.price} <br> Construction-year: ${boat.constructionYear} <br> Id: ${boat._id}`
-            let button=document.createElement('button')
-            button.innerHTML='Delete'
-            button.className=buttonDelete
-            button.id=boat._id
-            button.addEventListener('click', async()=>{
+            let deleteButton=document.createElement('button')
+            deleteButton.innerHTML='Delete'
+            deleteButton.className='buttonDelete'
+            deleteButton.id=boat._id
+            deleteButton.addEventListener('click', async()=>{
  
-                let boatID=button.id
-                
                 try {
-                    const response=await fetch (`/api/boat?id=${boatID}`, {method:'DELETE'})
+                    const response=await fetch (`/api/boat?id=${deleteButton.id}`, {method:'DELETE'})
                     const deletedBoat=await response.json()
                     
                 } catch(error){
@@ -92,10 +97,29 @@ window.addEventListener('load',()=>{
                 }
                 getBoats();
             })
+            let editButton=document.createElement('button')
+            editButton.innerHTML='<a href="#modifyBoatSection">Edit</a>'
+            editButton.className='editButton'
+            editButton.id=boat._id
+            editButton.addEventListener('click', async()=>{
+
+                modifyBoatContainer.style='display:block';
+                inputModifyModel.value=boat.modelName
+                inputModifyPrice.value=boat.price
+                inputModifyConstructionYear.value=boat.constructionYear
+                inputId.value=editButton.id
+        
+            })
+            let div=document.createElement('div')
+            div.className='buttonContainer'
+            
          
             li.appendChild(image)
             boatList.appendChild(li)
-            li.appendChild(button)
+            li.appendChild(div)
+            div.appendChild(editButton)
+            div.appendChild(deleteButton)
+            
           
            
         })

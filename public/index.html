@@ -26,6 +26,7 @@
         <!-- Hämta alla båtar******************** -->
         <div class='getAllBoats'>
             <h3>Get all boats</h3>
+            <a id='backToGetBoats'></a>
             <button class='getBoatsButton'>Get all boats</button>
 
             <div>
@@ -37,10 +38,15 @@
 
         <!-- Ändra på en båt -->
         <div class="modifyBoat">
+            <a id='modifyBoatSection'></a>
             <h3>Modify boatmodell</h3>
-            <label class='label'>New model:<input type="text" id='inputModify' value=''></label>
+            <label class='label'>New model:<input type="text" id='inputModifyModel' value=''></label>
+            <label class='label'>New price:<input type="number" id='inputModifyPrice' value=''></label>
+            <label class='label'>New constructionyear:<input type="number" id='inputModifyConstructionYear' value=''></label>
             <label class='label'>Id<input type="text" id='inputId' value=''></label>
-            <button class='updateBoatButton'>Update</button>
+            <button class='updateBoatButton'><a href='#backToGetBoats'>Update</a></button>
+           
+            
 
 
 

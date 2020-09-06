@@ -5,12 +5,7 @@ const collectionName='boats'
 
 function updateBoat(requestBody, callback){
     console.log('i database updateboat, requestBody', requestBody)
-
-    
-    
-
-    
-
+    id={_id:new ObjectID(requestBody.boatId)}
 
     MongoClient.connect(
     url,
@@ -23,13 +18,7 @@ function updateBoat(requestBody, callback){
         const col=client.db(databaseName).collection(collectionName)
         try{
 
-            //await col.updateOne({_id:new ObjectID(doc.query.id)}, {$set:doc.body})
-            //callback({
-            //result:result.result
-            //ops:result.ops
-            //})      try{
-          
-            const result=await col.updateOne({_id:new ObjectID(requestBody.boatId)},{$set:{modelName:requestBody.updateName}})
+            const result=await col.updateOne(id,{$set:{modelName:requestBody.updateName, price:requestBody.updatePrice, constructionYear:requestBody.updateConstructionYear}})
                 callback({
                     result:result.result,
                     ops:result.ops
