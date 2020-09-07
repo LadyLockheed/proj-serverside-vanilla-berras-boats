@@ -5,7 +5,7 @@ const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend
 // 'mongodb+srv://neda:7713601nj@cluster0.pn5gs.mongodb.net/goteborgaren_bera?retryWrites=true&w=majority'
 const databaseName='berrasBoats'
 const collectionName='boats'
-
+console.log('I database')
 function updateBoat(requestBody, callback){
     console.log('i database updateboat, requestBody', requestBody)
     id={_id:new ObjectID(requestBody.boatId)}

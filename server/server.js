@@ -6,6 +6,8 @@ const bodyParser=require('body-parser')
 const port = process.env.PORT || 1338
 const {getAllBoats, getBoat, addBoat, search, deleteBoat, resetDatabase, updateBoat}=require('./database.js')
 
+console.log('i server.js')
+
 
 // MIDDLEWARE--------
 
@@ -33,7 +35,6 @@ app.get('/api/boats', (req,res)=>{
 
 // GET hämta på id-nummer
 app.get('/api/boat', (req, res)=>{
-    
     let id=req.query.searchParam
     getBoat(id, dataOrError=>{
        res.send(dataOrError) 
@@ -75,8 +76,9 @@ app.post('/api/resetDatabase', (req, res)=>{
 
 // PUT update boat
 app.put('/api/updateBoat', (req,res)=>{
-    console.log('server.js, i updateBoat: ', req.body)
+    console.log('server.js, i updateBoat, req.body: ', req.body)
     updateBoat(req.body, dataOrError=>{
+        console.log('server.js, dataorError: ', dataOrError)
         res.send(dataOrError)
     })
 })
