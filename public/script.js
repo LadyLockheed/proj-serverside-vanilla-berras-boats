@@ -194,7 +194,7 @@ window.addEventListener('load',()=>{
         }
        
     })
-
+//DEnna text ska tas bort sen, bara för att testa heroku
     
     //POST add boat
     buttonAddBoat.addEventListener('click', async()=>{

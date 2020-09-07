@@ -2,6 +2,7 @@ const express=require('express')
 const app=express();
 const bodyParser=require('body-parser')
 // const port=1338;
+//för cloud atlas
 const port = process.env.PORT || 1338
 const {getAllBoats, getBoat, addBoat, search, deleteBoat, resetDatabase, updateBoat}=require('./database.js')
 
