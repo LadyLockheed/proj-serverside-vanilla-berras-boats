@@ -37,6 +37,7 @@ window.addEventListener('load',()=>{
 
     //get all boats function
     async function getBoats(){
+        console.log('i funktion getBoats')
 
         const response=await fetch ('/api/boats',{method:'GET'})
         const boatsObject=await response.json();
@@ -98,6 +99,7 @@ window.addEventListener('load',()=>{
 
     //GET all boats
     buttonGetBoats.addEventListener('click', async()=>{
+        console.log('i addeventlistener getboats')
         getBoats();
     })
 

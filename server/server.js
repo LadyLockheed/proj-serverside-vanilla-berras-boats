@@ -23,9 +23,10 @@ app.use( (req, res, next) => {
 
 // GET hämta alla
 app.get('/api/boats', (req,res)=>{
-    console.log('GET /api/boats')
+    console.log('server.js, get all boats')
     //skickar in en funktion som parameter, i database.js heter parametern callback
     getAllBoats(dataOrError=>{
+        console.log("i server.js, dataorError: ", dataOrError)
        res.send(dataOrError)
    });
 })
