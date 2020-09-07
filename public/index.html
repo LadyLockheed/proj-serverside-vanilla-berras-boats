@@ -36,10 +36,14 @@
 
             <a id='modifyBoatSection'></a>
             <h3>Modify boatmodell</h3>
-            <label class='label'>New model:<input type="text" id='inputModifyModel' value=''></label>
-            <label class='label'>New price:<input type="number" id='inputModifyPrice' value=''></label>
-            <label class='label'>New constructionyear:<input type="number" id='inputModifyConstructionYear' value=''></label>
-            <label class='label'>Id<input type="text" id='inputId' value=''></label>
+            <form>
+                <label class='label'>New model:<input type="text" id='inputModifyModel' value=''></label>
+                <label class='label'>New price:<input type="number" id='inputModifyPrice' value=''></label>
+                <label class='label'>New constructionyear:<input type="number" id='inputModifyConstructionYear' value=''></label>
+                <label class='label'>Id<input type="text" id='inputId' value=''></label>
+
+            </form>
+           
             <button class='updateBoatButton'><a href='#backToGetBoats'>Update</a></button>
     
         </div>
@@ -77,7 +81,7 @@
         <!-- Search -->
         <div class='searchContainer'>
             <h3>Search-engine</h3>
-            <p>Vid sök på sail och motor, skriv in yes eller no</p>
+            <p>Vid sök på sail och motor, skriv in yes eller no.</p>
 
             <select name="categorys" id="categorys">
                 <option value="word">Word</option>
@@ -109,7 +113,7 @@
 
         <!-- Restore database*********************** -->
         <div class="restoreContainer">
-            <h3>Restore database</h3><p>Empty database and reinstore original boatlist</p>
+            <h3>Restore database</h3><p>Empty database and reinstore original boatlist.</p>
             <button class="restoreButton">Reset</button>
             <p class='restoreMsg'></p>
         </div>

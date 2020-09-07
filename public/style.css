@@ -10,6 +10,14 @@
     display:none;
     
 }
+.modifyBoat > form{
+    display:inline-block;
+    padding:.5em;
+    background-color:#e5d7d4;
+    box-shadow: 3px 3px 10px 3px #cacaca65;
+    border-radius:5px;
+    
+}
 .getBoatsButton{
     margin-left:3px;
 }
@@ -89,10 +97,10 @@ li{
     border-radius:5px;
     margin:.5em; 
     display:grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
     text-align:center;
-    height:20em;
-
+    height:24em;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .boatImage{
     justify-self:center;
@@ -102,7 +110,7 @@ li{
     
 }
 .buttonContainer{
-    grid-row:4/5;
+    grid-row:5/6;
     display:grid;
     grid-template-columns:1fr 1fr;
     margin-top:10px;
@@ -125,6 +133,7 @@ label > input {
 }
 .label{
     display:block;
+    font-family: 'Noto Sans KR', sans-serif;
    
 }
 .checkboxes > label{

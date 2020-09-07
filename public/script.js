@@ -28,38 +28,11 @@ window.addEventListener('load',()=>{
     let inputModifyConstructionYear=document.querySelector('#inputModifyConstructionYear')
     let inputId=document.querySelector('#inputId')
     let modifyBoatContainer=document.querySelector('.modifyBoat')
-    //DELETE
-    let buttonDelete=document.querySelector('buttonDelete')
     //DELETE GET Restore database
     let buttonRestore=document.querySelector('.restoreButton')
     let restoreMsg=document.querySelector('.restoreMsg')
 
-
-    //TODO göm updateformuläret när klar
-
-    //TODO evenmtulell lägg in ancortag på restoreknappenm och kör en getBoats.
-    buttonUpdate.addEventListener('click', async()=>{
-        
-        const response= await fetch('/api/updateBoat', {
-            headers:{
-                'Accept':'application/json',
-                'Content-Type':'application/json'
-            },
-            method:'put',
-            body:JSON.stringify({
-                updateName:inputModifyModel.value,
-                updatePrice:inputModifyPrice.value,
-                updateConstructionYear:inputModifyConstructionYear.value,
-                boatId:inputId.value
-            })
-        });
-        const text=await response.json();
-        console.log(text)
-        getBoats();
-
-
-    })
-
+  
 
 
     //get all boats function
@@ -119,16 +92,37 @@ window.addEventListener('load',()=>{
             li.appendChild(div)
             div.appendChild(editButton)
             div.appendChild(deleteButton)
-            
-          
-           
+    
         })
     }
-
 
     //GET all boats
     buttonGetBoats.addEventListener('click', async()=>{
         getBoats();
+    })
+
+      //PUT edit/update boat
+      buttonUpdate.addEventListener('click', async()=>{
+        
+        const response= await fetch('/api/updateBoat', {
+            headers:{
+                'Accept':'application/json',
+                'Content-Type':'application/json'
+            },
+            method:'put',
+            body:JSON.stringify({
+                updateName:inputModifyModel.value,
+                updatePrice:inputModifyPrice.value,
+                updateConstructionYear:inputModifyConstructionYear.value,
+                boatId:inputId.value
+            })
+        });
+        const text=await response.json();
+        console.log(text)
+        getBoats();
+        modifyBoatContainer.style='display:none'
+
+
     })
 
     //GET boat from id
@@ -194,7 +188,6 @@ window.addEventListener('load',()=>{
         }
        
     })
-//DEnna text ska tas bort sen, bara för att testa heroku
     
     //POST add boat
     buttonAddBoat.addEventListener('click', async()=>{
@@ -230,7 +223,6 @@ window.addEventListener('load',()=>{
 
     })
 
-
     //POST restore database
     buttonRestore.addEventListener('click', async()=>{
       
@@ -247,15 +239,8 @@ window.addEventListener('load',()=>{
         const text=await response.json();
 
         restoreMsg.innerHTML="Database cleared and restored"
-       
 
-      
 
     })
-
-   
-
-
-
 
 })
