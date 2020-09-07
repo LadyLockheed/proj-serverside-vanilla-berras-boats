@@ -29,7 +29,7 @@ app.get('/api/boats', (req,res)=>{
    });
 })
 
-//GET hämta på id-nummer
+// GET hämta på id-nummer
 app.get('/api/boat', (req, res)=>{
     
     let id=req.query.searchParam
@@ -47,7 +47,7 @@ app.get('/api/search', (req, res)=>{
      })
  })
 
-//DELETE boat on id
+// DELETE boat on id
 app.delete('/api/boat', (req, res)=>{
     let id=req.query.id
     deleteBoat(id, dataOrError=>{
@@ -55,7 +55,7 @@ app.delete('/api/boat', (req, res)=>{
     })
 })
 
-//POST lägg till en ny båt
+// POST lägg till en ny båt
 app.post('/api/addBoat', (req, res)=>{
 
     addBoat(req.body, dataOrError =>{
@@ -64,14 +64,14 @@ app.post('/api/addBoat', (req, res)=>{
    
 })
 
-//POST reset database
+// POST reset database
 app.post('/api/resetDatabase', (req, res)=>{
     resetDatabase(req.body, dataOrError=>{
         res.send(dataOrError)
     })
 })
 
-//PUT update boat
+// PUT update boat
 app.put('/api/updateBoat', (req,res)=>{
     console.log('server.js, i updateBoat: ', req.body)
     updateBoat(req.body, dataOrError=>{
