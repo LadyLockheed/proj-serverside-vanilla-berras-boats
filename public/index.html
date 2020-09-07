@@ -12,23 +12,18 @@
 <body>
     <main>
 
-  
         <div class="image">
             
             <h1>Berras Boats - a restful API demonstration</h1>
 
         </div>
-        <!-- <div class="imagetest">
-
-
-        </div> -->
-
+     
         <!-- Hämta alla båtar******************** -->
         <div class='getAllBoats'>
+
             <h3>Get all boats</h3>
             <a id='backToGetBoats'></a>
             <button class='getBoatsButton'>Get all boats</button>
-
             <div>
                 <ul class='boatList'>
                 </ul>
@@ -38,6 +33,7 @@
 
         <!-- Ändra på en båt -->
         <div class="modifyBoat">
+
             <a id='modifyBoatSection'></a>
             <h3>Modify boatmodell</h3>
             <label class='label'>New model:<input type="text" id='inputModifyModel' value=''></label>
@@ -45,27 +41,21 @@
             <label class='label'>New constructionyear:<input type="number" id='inputModifyConstructionYear' value=''></label>
             <label class='label'>Id<input type="text" id='inputId' value=''></label>
             <button class='updateBoatButton'><a href='#backToGetBoats'>Update</a></button>
-           
-            
-
-
-
+    
         </div>
 
         <!-- Hämta en specifik båt -->
         <div class='findBoat'>
+
             <h3>Get boat on id</h3>
-            
             <input type="text" id='inputFindBoat' value=''>
             <button class='findBoatButton'>Get boat</button>
-            <div class='findBoatContainer'>
-    
-           
-            </div>
+            <div class='findBoatContainer'></div>
         </div>
 
         <!-- Lägg till ny båt*********************** -->
         <div class="addBoat">
+            
             <h3>Add a new boat</h3>
             <form class="form">
                 <label class="label">Modelname: <input type="text" id="inputModelName" value=""></label> 
