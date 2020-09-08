@@ -26,6 +26,7 @@ window.addEventListener('load',()=>{
     let inputModifyModel=document.querySelector('#inputModifyModel')
     let inputModifyPrice=document.querySelector('#inputModifyPrice')
     let inputModifyConstructionYear=document.querySelector('#inputModifyConstructionYear')
+    let inputModifyImgUrl=document.querySelector('#inputModifyImgUrl')
     let inputId=document.querySelector('#inputId')
     let modifyBoatContainer=document.querySelector('.modifyBoat')
     //DELETE GET Restore database
@@ -81,6 +82,7 @@ window.addEventListener('load',()=>{
                 inputModifyModel.value=boat.modelName
                 inputModifyPrice.value=boat.price
                 inputModifyConstructionYear.value=boat.constructionYear
+                inputModifyImgUrl.value=boat.url
                 inputId.value=editButton.id
         
             })
@@ -103,9 +105,9 @@ window.addEventListener('load',()=>{
         getBoats();
     })
 
-      //PUT edit/update boat
-      buttonUpdate.addEventListener('click', async()=>{
-        
+    //PUT edit/update boat
+    buttonUpdate.addEventListener('click', async()=>{
+    
         const response= await fetch('/api/updateBoat', {
             headers:{
                 'Accept':'application/json',
@@ -116,7 +118,8 @@ window.addEventListener('load',()=>{
                 updateName:inputModifyModel.value,
                 updatePrice:inputModifyPrice.value,
                 updateConstructionYear:inputModifyConstructionYear.value,
-                boatId:inputId.value
+                boatId:inputId.value,
+                imgUrl:inputModifyImgUrl.value
             })
         });
         const text=await response.json();

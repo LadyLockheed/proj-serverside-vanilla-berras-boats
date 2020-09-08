@@ -6,6 +6,7 @@ const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend
 const databaseName='berrasBoats'
 const collectionName='boats'
 console.log('I database')
+
 function updateBoat(requestBody, callback){
     console.log('i database updateboat, requestBody', requestBody)
     id={_id:new ObjectID(requestBody.boatId)}
@@ -21,7 +22,7 @@ function updateBoat(requestBody, callback){
         const col=client.db(databaseName).collection(collectionName)
         try{
 
-            const result=await col.updateOne(id,{$set:{modelName:requestBody.updateName, price:requestBody.updatePrice, constructionYear:requestBody.updateConstructionYear}})
+            const result=await col.updateOne(id,{$set:{modelName:requestBody.updateName, price:requestBody.updatePrice, constructionYear:requestBody.updateConstructionYear, url:requestBody.imgUrl}})
                 callback({
                     result:result.result,
                     ops:result.ops
