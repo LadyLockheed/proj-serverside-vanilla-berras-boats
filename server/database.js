@@ -1,5 +1,6 @@
 const {MongoClient, ObjectID}=require('mongodb')
 // const url='mongodb://localhost:27017';
+// const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend.foi9f.gcp.mongodb.net/berrasBoatsDatabase?retryWrites=true&w=majority'
 const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend.foi9f.gcp.mongodb.net/berrasBoatsDatabase?retryWrites=true&w=majority'
 
 // 'mongodb+srv://neda:7713601nj@cluster0.pn5gs.mongodb.net/goteborgaren_bera?retryWrites=true&w=majority'
