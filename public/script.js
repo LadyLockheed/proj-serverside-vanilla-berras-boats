@@ -35,14 +35,12 @@ window.addEventListener('load',()=>{
 
   
 
-
+    //TODO Om man inte lagt in en bild ska en defaultbild läggas upp istället
     //get all boats function
     async function getBoats(){
-        console.log('i funktion getBoats')
-
+        
         const response=await fetch ('/api/boats',{method:'GET'})
         const boatsObject=await response.json();
-        console.log('script.js, getBoats: ', boatsObject)
 
         boatList.innerHTML='';
         boatsObject.forEach(boat=>{
@@ -64,12 +62,13 @@ window.addEventListener('load',()=>{
             deleteButton.addEventListener('click', async()=>{
  
                 try {
-                    console.log('script.js, function get boats, i try innan fetch')
+            
                     const response=await fetch (`/api/boat?id=${deleteButton.id}`, {method:'DELETE'})
                     const deletedBoat=await response.json()
-                    console.log('script.js, deleteboat, i try efter fetch, response: ', deletedBoat)
+                   
                     
                 } catch(error){
+                    //TODO sätt utt ett felmeddelande till användaren här
                     console.log("Something went wrong while trying to get boats ", error.message)
                 }
                 getBoats();
@@ -90,8 +89,6 @@ window.addEventListener('load',()=>{
             })
             let div=document.createElement('div')
             div.className='buttonContainer'
-            
-         
             li.appendChild(image)
             boatList.appendChild(li)
             li.appendChild(div)
@@ -103,7 +100,7 @@ window.addEventListener('load',()=>{
 
     //GET all boats
     buttonGetBoats.addEventListener('click', async()=>{
-        console.log('i addeventlistener getboats')
+        
         getBoats();
     })
 
@@ -125,7 +122,6 @@ window.addEventListener('load',()=>{
             })
         });
         const text=await response.json();
-        console.log(text)
         getBoats();
         modifyBoatContainer.style='display:none'
 
@@ -153,7 +149,6 @@ window.addEventListener('load',()=>{
             image.style.width='150px';
            image.src=boat.url;
             findBoatContainer.appendChild(image)
-
 
         } catch(error){
             console.log('Something went wrong while getting boat by id: ', error.message)
@@ -207,6 +202,10 @@ window.addEventListener('load',()=>{
         if(inputHasMotor.checked){
             hasMotor='yes'
         }
+        if(inputImgUrl.value==""){
+           inputImgUrl.value='https://i.ytimg.com/vi/Ko7dWzhVHOQ/maxresdefault.jpg'
+        }
+       
        
         let newBoat={modelName:inputModelName.value, constructionYear:Number(inputConstructionYear.value), price:Number(inputPrice.value), sailingBoat:hasSail, motor:hasMotor, url:inputImgUrl.value }
         
@@ -221,12 +220,14 @@ window.addEventListener('load',()=>{
         });
         const text=await response.json();
         console.log(text)
-
+        inputModelName.value="";
+        inputConstructionYear.value="";
+        inputPrice.value="";
+        inputImgUrl.value="";
+        inputHasSail.checked=false;
+        inputHasMotor.checked=false;
         newBoatMsg.innerHTML='Success. You added a new boat.'
-
-        // console.log('Script, data: ',text)
-        // let stringdata=JSON.stringify(data)
-        // console.log('Script: stringifyad data: ', stringdata)
+        getBoats();
 
     })
 

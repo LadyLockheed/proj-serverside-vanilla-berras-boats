@@ -3,13 +3,12 @@ const {MongoClient, ObjectID}=require('mongodb')
 // const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend.foi9f.gcp.mongodb.net/berrasBoatsDatabase?retryWrites=true&w=majority'
 const url='mongodb+srv://berrasBoatsDatabase:berrasBoatsServerside@karinfrontend.foi9f.gcp.mongodb.net/berrasBoatsDatabase?retryWrites=true&w=majority'
 
-// 'mongodb+srv://neda:7713601nj@cluster0.pn5gs.mongodb.net/goteborgaren_bera?retryWrites=true&w=majority'
 const databaseName='berrasBoats'
 const collectionName='boats'
-console.log('I database')
+
 
 function updateBoat(requestBody, callback){
-    console.log('i database updateboat, requestBody', requestBody)
+   
     id={_id:new ObjectID(requestBody.boatId)}
 
     MongoClient.connect(
@@ -39,7 +38,6 @@ function updateBoat(requestBody, callback){
 
 }
 
-
 function get( filter, callback) {
     //För att kunna connecta med mongodb
     MongoClient.connect(
@@ -48,7 +46,6 @@ function get( filter, callback) {
     async (error, client)=>{
         //om anslutning misslyckas, returnera fel
         if(error){
-            console.log('database i if: ', error.message, error)
             callback('ERROR! Kunde inte connecta. Attans.', error.message)
             return;//exit the callback function
         }

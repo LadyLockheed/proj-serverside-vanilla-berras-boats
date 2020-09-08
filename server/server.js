@@ -28,7 +28,7 @@ app.get('/api/boats', (req,res)=>{
     console.log('server.js, get all boats')
     //skickar in en funktion som parameter, i database.js heter parametern callback
     getAllBoats(dataOrError=>{
-        console.log("i server.js, dataorError: ", dataOrError)
+       
        res.send(dataOrError)
    });
 })
@@ -44,7 +44,7 @@ app.get('/api/boat', (req, res)=>{
 
 // GET search
 app.get('/api/search', (req, res)=>{
-    console.log("server.js, req.query: ", req.query)
+   
      search(req.query, dataOrError=>{
         res.send(dataOrError) 
      })
@@ -76,9 +76,8 @@ app.post('/api/resetDatabase', (req, res)=>{
 
 // PUT update boat
 app.put('/api/updateBoat', (req,res)=>{
-    console.log('server.js, i updateBoat, req.body: ', req.body)
+   
     updateBoat(req.body, dataOrError=>{
-        console.log('server.js, dataorError: ', dataOrError)
         res.send(dataOrError)
     })
 })
