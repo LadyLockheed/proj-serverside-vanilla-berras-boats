@@ -47,6 +47,7 @@ function get( filter, callback) {
     async (error, client)=>{
         //om anslutning misslyckas, returnera fel
         if(error){
+            console.log('database i if: ', error.message, error)
             callback('ERROR! Kunde inte connecta. Attans.', error.message)
             return;//exit the callback function
         }
