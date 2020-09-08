@@ -64,8 +64,10 @@ window.addEventListener('load',()=>{
             deleteButton.addEventListener('click', async()=>{
  
                 try {
+                    console.log('script.js, function get boats, i try innan fetch')
                     const response=await fetch (`/api/boat?id=${deleteButton.id}`, {method:'DELETE'})
                     const deletedBoat=await response.json()
+                    console.log('script.js, deleteboat, i try efter fetch, response: ', deletedBoat)
                     
                 } catch(error){
                     console.log("Something went wrong while trying to get boats ", error.message)

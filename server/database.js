@@ -47,7 +47,7 @@ function get( filter, callback) {
     async (error, client)=>{
         //om anslutning misslyckas, returnera fel
         if(error){
-            callback('ERROR! Kunde inte connecta. Attans.')
+            callback('ERROR! Kunde inte connecta. Attans.', error.message)
             return;//exit the callback function
         }
         const col=client.db(databaseName).collection(collectionName) //collectionobjektet ska man skicka queries till
